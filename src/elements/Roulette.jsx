@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { RouletteContainer } from "../styledComponents";
-import { product, colors } from "../utils";
+import { product, colors } from "../data";
 
 const Roulette = () => {
   const [ctx, setCtx] = useState();

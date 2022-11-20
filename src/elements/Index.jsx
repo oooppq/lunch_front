@@ -12,11 +12,16 @@ import {
 
 import { getData } from "../api/getApi";
 import loadingIcon from "../img/loading.svg";
+import { type, location_type } from "../data";
+import classnames from "classnames";
+
+const { kakao } = window;
 
 const Index = () => {
   const [isMap, setMap] = useState(false);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loc, setLoc] = useState(null);
   const url = "http://127.0.0.1:8000/restaurants/";
 
   const indexOnclick = (e) => {
@@ -29,7 +34,10 @@ const Index = () => {
 
   const restaurantElemMaker = (props) => {
     return (
-      <RestaurantElem key={props.id}>
+      <RestaurantElem
+        key={props.id}
+        className={classnames("restElem", props.location_type)}
+      >
         <RestaurantImg src={props.store_image}></RestaurantImg>
         <RestaurantInfo>
           <div>{props.store_name}</div>
@@ -40,6 +48,19 @@ const Index = () => {
     );
   };
 
+  const locOnClick = (e) => {
+    if (!isMap) {
+      let loc = e.target.innerHTML;
+      let restElems = document.querySelectorAll(".restElem");
+      for (let restElem of restElems) {
+        if (loc == restElem.classList[3]) {
+          restElem.style.display = "flex";
+        } else {
+          restElem.style.display = "none";
+        }
+      }
+    }
+  };
   return (
     <IndexContainer>
       {isMap ? (
@@ -49,12 +70,13 @@ const Index = () => {
       )}
 
       <LocationNavBar>
-        <LocationElement>정문</LocationElement>
-        <LocationElement>남문</LocationElement>
-        <LocationElement>후문</LocationElement>
-        <LocationElement>신촌</LocationElement>
-        <LocationElement>대흥</LocationElement>
-        <LocationElement>공덕</LocationElement>
+        {location_type.map((loc) => {
+          return (
+            <LocationElement onClick={locOnClick} key={loc.id} className="loc">
+              {loc.loc_type}
+            </LocationElement>
+          );
+        })}
       </LocationNavBar>
       {loading ? (
         <div>

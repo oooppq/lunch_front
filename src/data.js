@@ -1,3 +1,45 @@
+export const type = [
+  {
+    id: 1,
+    type: "한식",
+  },
+  {
+    id: 2,
+    type: "중식",
+  },
+  {
+    id: 3,
+    type: "일식",
+  },
+];
+
+export const location_type = [
+  {
+    id: 1,
+    loc_type: "정문",
+  },
+  {
+    id: 2,
+    loc_type: "남문",
+  },
+  {
+    id: 3,
+    loc_type: "후문",
+  },
+  {
+    id: 4,
+    loc_type: "신촌",
+  },
+  {
+    id: 5,
+    loc_type: "대흥",
+  },
+  {
+    id: 6,
+    loc_type: "공덕",
+  },
+];
+
 export const users = [
   {
     id: "test1",
@@ -19,37 +61,30 @@ export const users = [
   },
 ];
 
-export const restaurants = [
-  {
-    id: 1,
-    r_name: "치킨짱",
-    latitude: 0,
-    longitude: 0,
-    location: "정문",
-    category: "한식",
-    image: "../img/recom/1.png",
-    info: "전통의 서강 맛집!",
-  },
-  {
-    id: 2,
-    r_name: "후루룩국수",
-    latitude: 0,
-    longitude: 0,
-    location: "남문",
-    category: "일식",
-    image: "../img/recom/2.png",
-    info: "국수가 진짜 맛없는 집!",
-  },
-  {
-    id: 3,
-    r_name: "미스터왕의 짜장면",
-    latitude: 0,
-    longitude: 0,
-    location: "후문",
-    category: "중식",
-    image: "../img/recom/3.png",
-    info: "칭따오!",
-  },
+export const product = [
+  "떡볶이",
+  "돈가스",
+  "초밥",
+  "피자",
+  "냉면",
+  "치킨",
+  "족발",
+  "피자",
+  "삼겹살",
+];
+
+export const colors = [
+  "#dc0936",
+  "#e6471d",
+  "#f7a416",
+  "#efe61f ",
+  "#60b236",
+  "#209b6c",
+  "#169ed8",
+  "#3f297e",
+  "#87207b",
+  "#be107f",
+  "#e7167b",
 ];
 
 export const menus = [
