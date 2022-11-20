@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
@@ -7,8 +7,9 @@ import {
   SliderElemImg,
   SliderElemInfo,
 } from "../styledComponents";
-import { restaurants } from "../data";
-import chicken from "../img/recom/1.png";
+
+import loadingIcon from "../img/loading.svg";
+import { getData } from "../api/getApi";
 
 export const HomeSlider = () => {
   const settings = {
@@ -20,23 +21,40 @@ export const HomeSlider = () => {
     lazyLoad: true,
     textAlign: "center",
   };
+
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const url = "http://127.0.0.1:8000/restaurants/";
+
+  useEffect(() => {
+    getData(setData, setLoading, url);
+  }, []);
+
   return (
-    <StyledSlider {...settings} height="100%;">
-      {restaurants.map((props) => {
-        return SliderElemMaker(props);
-      })}
-    </StyledSlider>
+    <div>
+      {loading ? (
+        <div>
+          <img src={loadingIcon} alt="" />
+        </div>
+      ) : (
+        <StyledSlider {...settings} height="100%;">
+          {data.map((props) => {
+            return SliderElemMaker(props);
+          })}
+        </StyledSlider>
+      )}
+    </div>
   );
 };
 
 export const SliderElemMaker = (props) => {
   return (
     <SliderElem key={props.id}>
-      <SliderElemImg src={chicken}></SliderElemImg>
+      <SliderElemImg src={props.store_image}></SliderElemImg>
       <SliderElemInfo>
-        <div className="mName">{props.r_name}</div>
-        <div className="rName">{props.info}</div>
-        <div className="rName">{props.info}</div>
+        <div className="mName">{props.store_name}</div>
+        <div className="rName">{props.explain}</div>
+        <div className="rName">{props.explain}</div>
       </SliderElemInfo>
     </SliderElem>
   );

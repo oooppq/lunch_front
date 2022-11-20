@@ -70,7 +70,7 @@ export const HomeContainer = styled.div`
 
 export const RecommContainer = styled.div`
   width: 100%;
-  height: 400px;
+  height: 500px;
 `;
 
 export const RecommTitle = styled.div`
