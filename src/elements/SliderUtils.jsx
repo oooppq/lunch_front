@@ -9,7 +9,7 @@ import {
 } from "../styledComponents";
 
 import loadingIcon from "../img/loading.svg";
-import { getData } from "../api/getApi";
+import { getData } from "../utils/getApi";
 
 export const HomeSlider = () => {
   const settings = {
@@ -22,12 +22,15 @@ export const HomeSlider = () => {
     textAlign: "center",
   };
 
-  const [data, setData] = useState(null);
+  const [restData, setRestData] = useState(null);
+  const [menuData, setMenuData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const url = "http://127.0.0.1:8000/restaurants/";
+  const restUrl = "http://127.0.0.1:8000/restaurants";
+  const menuUrl = "http://127.0.0.1:8000/menu/all";
 
   useEffect(() => {
-    getData(setData, setLoading, url);
+    getData(setMenuData, setLoading, menuUrl);
+    // getData(setRestData, setLoading, restUrl);
   }, []);
 
   return (
@@ -38,7 +41,7 @@ export const HomeSlider = () => {
         </div>
       ) : (
         <StyledSlider {...settings} height="100%;">
-          {data.map((props) => {
+          {menuData.map((props) => {
             return SliderElemMaker(props);
           })}
         </StyledSlider>
@@ -50,11 +53,11 @@ export const HomeSlider = () => {
 export const SliderElemMaker = (props) => {
   return (
     <SliderElem key={props.id}>
-      <SliderElemImg src={props.store_image}></SliderElemImg>
+      <SliderElemImg src={props.menu_image}></SliderElemImg>
       <SliderElemInfo>
-        <div className="mName">{props.store_name}</div>
-        <div className="rName">{props.explain}</div>
-        <div className="rName">{props.explain}</div>
+        <div className="mName">{props.menu_name}</div>
+        <div className="rName">{props.menu_price}</div>
+        {/* <div className="rName">{props.explain}</div> */}
       </SliderElemInfo>
     </SliderElem>
   );

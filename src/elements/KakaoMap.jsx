@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { Map, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk";
+import marker from "../img/marker.png";
+import { MapInfo } from "../styledComponents";
 
 const { kakao } = window;
 
@@ -56,6 +58,13 @@ const KakaoMap = (props) => {
       }
     });
   }
+  let mis = document.querySelectorAll(".mapInfo");
+  for (let mi of mis) {
+    console.log(mi);
+    mi.addEventListener("click", () => {
+      console.log("check!");
+    });
+  }
   return (
     <Map // 지도를 표시할 Container
       center={loc}
@@ -68,7 +77,30 @@ const KakaoMap = (props) => {
     >
       {props.data.map((rest) => {
         let l = { lat: rest.latitude, lng: rest.longitude };
-        return <MapMarker key={rest.id} position={l} />;
+        return (
+          <MapMarker
+            key={rest.id}
+            position={l}
+            image={{
+              src: marker,
+              size: { width: 40, height: 40 },
+            }}
+          >
+            {/* <CustomOverlayMap position={l} yAnchor={1}>
+              <div className="customoverlay">test</div>
+              <div onClick={() => console.log("check")}>setfes</div>
+            </CustomOverlayMap> */}
+            {/* <MapInfo
+              className="mapInfo"
+              onClick={() => {
+                // props.setModal(true);
+                console.log("check!");
+              }}
+            >
+              test
+            </MapInfo> */}
+          </MapMarker>
+        );
       })}
     </Map>
   );

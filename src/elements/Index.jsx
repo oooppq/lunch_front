@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import KakaoMap from "./KakaoMap";
 import {
   IndexContainer,
@@ -6,44 +6,71 @@ import {
   LocationElement,
   RestaurantListDiv,
   RestaurantElem,
+  RestaurantElemLeft,
+  RestaurantElemRight,
   RestaurantImg,
   RestaurantInfo,
 } from "../styledComponents";
 
-import { getData } from "../api/getApi";
+import { getData } from "../utils/getApi";
 import loadingIcon from "../img/loading.svg";
 import { type, location_type } from "../data";
 import classnames from "classnames";
+import axios from "axios";
+import Modal from "./Modal";
 
-const { kakao } = window;
-
-const Index = () => {
+const Index = (props) => {
   const [isMap, setMap] = useState(false);
-  const [data, setData] = useState(null);
+  const [restaurants, setRestaurants] = useState(null);
+  const [menu, setMenu] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [loc, setLoc] = useState(null);
+  const [modal, setModal] = useState(false);
   const url = "http://127.0.0.1:8000/restaurants/";
 
   const indexOnclick = (e) => {
     setMap(!isMap);
   };
 
-  useState(() => {
-    getData(setData, setLoading, url);
-  });
+  useEffect(() => {
+    getData(setRestaurants, setLoading, url);
+  }, []);
 
-  const restaurantElemMaker = (props) => {
+  const restOnClick = async (e) => {
+    const id = e.currentTarget.id;
+    const menuUrl = url + id + "/menu";
+    const res = await axios.get(menuUrl);
+    setMenu(res.data);
+    setModal(true);
+  };
+
+  const modalOff = () => {
+    setModal(false);
+  };
+
+  const restaurantElemMaker = (param) => {
     return (
       <RestaurantElem
-        key={props.id}
-        className={classnames("restElem", props.location_type)}
+        key={param.id}
+        className={classnames("restElem", param.location_type)}
       >
-        <RestaurantImg src={props.store_image}></RestaurantImg>
-        <RestaurantInfo>
-          <div>{props.store_name}</div>
-          <div>{props.location_type}</div>
-          <div>{props.type}</div>
-        </RestaurantInfo>
+        <RestaurantElemLeft id={param.id} onClick={restOnClick}>
+          <RestaurantImg src={param.store_image}></RestaurantImg>
+          <RestaurantInfo>
+            <div>{param.store_name}</div>
+            <div>{param.location_type}</div>
+            <div>{param.type}</div>
+          </RestaurantInfo>
+        </RestaurantElemLeft>
+        <RestaurantElemRight>
+          <div>찜하기</div>
+          <div
+            onClick={() => {
+              props.setOptions((prev) => [...prev, param.store_name]);
+            }}
+          >
+            룰렛에 추가
+          </div>
+        </RestaurantElemRight>
       </RestaurantElem>
     );
   };
@@ -83,28 +110,45 @@ const Index = () => {
           <img src={loadingIcon} alt="" />
         </div>
       ) : isMap ? (
-        <KakaoMap data={data}></KakaoMap>
+        <KakaoMap data={restaurants} setModal={setModal}></KakaoMap>
       ) : (
         <div>
           <RestaurantListDiv>
             <div>한식</div>
-            {data.map((props) => {
-              if (props.type === "한식") return restaurantElemMaker(props);
+            {restaurants.map((restaurant) => {
+              if (restaurant.type === "한식")
+                return restaurantElemMaker(restaurant);
               else return null;
             })}
             <div>중식</div>
-            {data.map((props) => {
-              if (props.type === "중식") return restaurantElemMaker(props);
+            {restaurants.map((restaurant) => {
+              if (restaurant.type === "중식")
+                return restaurantElemMaker(restaurant);
               else return null;
             })}
             <div>일식</div>
-            {data.map((props) => {
-              if (props.type === "일식") return restaurantElemMaker(props);
+            {restaurants.map((restaurant) => {
+              if (restaurant.type === "일식")
+                return restaurantElemMaker(restaurant);
               else return null;
             })}
           </RestaurantListDiv>
         </div>
       )}
+      {/* {modal ? (
+        <div>
+          {menu.map((m) => {
+            return (
+              <div>
+                {m.menu_name} <span onClick={modalOff}>x</span>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <></>
+      )} */}
+      <Modal open={modal} menu={menu} modalOff={modalOff}></Modal>
     </IndexContainer>
   );
 };

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { RouletteContainer } from "../styledComponents";
 import { product, colors } from "../data";
 
-const Roulette = () => {
+const Roulette = (props) => {
   const [ctx, setCtx] = useState();
   const canvasRef = useRef(null);
 
@@ -12,9 +12,9 @@ const Roulette = () => {
     canvas.height = window.innerWidth * 0.8;
     const context = canvas.getContext("2d");
     const [cw, ch] = [canvas.width / 2, canvas.height / 2];
-    const arc = Math.PI / (product.length / 2);
+    const arc = Math.PI / (props.options.length / 2);
 
-    for (let i = 0; i < product.length; i++) {
+    for (let i = 0; i < props.options.length; i++) {
       context.beginPath();
       context.fillStyle = colors[i % (colors.length - 1)];
       context.moveTo(cw, ch);
@@ -27,7 +27,7 @@ const Roulette = () => {
     context.font = "18px Pretendard";
     context.textAlign = "center";
 
-    for (let i = 0; i < product.length; i++) {
+    for (let i = 0; i < props.options.length; i++) {
       const angle = arc * i + arc / 2;
 
       context.save();
@@ -39,7 +39,7 @@ const Roulette = () => {
 
       context.rotate(angle + Math.PI / 2);
 
-      product[i].split(" ").forEach((text, j) => {
+      props.options[i].split(" ").forEach((text, j) => {
         context.fillText(text, 0, 30 * j);
       });
 
@@ -54,16 +54,16 @@ const Roulette = () => {
     canvas.style.transition = `initial`;
 
     setTimeout(() => {
-      const ran = Math.floor(Math.random() * product.length);
+      const ran = Math.floor(Math.random() * props.options.length);
 
-      const arc = 360 / product.length;
+      const arc = 360 / props.options.length;
       const rotate = ran * arc + 3600 + arc * 3 - arc / 4;
 
       canvas.style.transform = `rotate(-${rotate}deg)`;
       canvas.style.transition = `2s`;
 
       setTimeout(
-        () => alert(`오늘의 야식은?! ${product[ran]} 어떠신가요?`),
+        () => alert(`오늘의 야식은?! ${props.options[ran]} 어떠신가요?`),
         2000
       );
     }, 1);

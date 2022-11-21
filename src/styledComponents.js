@@ -9,8 +9,8 @@ import bg from "./img/bg.png";
 export const Wrap = styled.div`
   align-items: center;
   width: 100%;
-  //   height: 1000px;
   align-items: center;
+  padding-bottom: 100px;
   //   background-image: url(${bg});
   //   background-repeat: repeat;
   @media only screen and (min-width: 400px) {
@@ -24,9 +24,19 @@ export const Wrap = styled.div`
 /** Header components */
 export const HeaderDiv = styled.div`
   text-align: center;
-  height: 70px;
-  font-size: 70px;
-  padding-bottom 10px;
+  display: flex;
+  justify-content: center;
+  height: 90px;
+  padding: 10px 0;
+  img {
+    height: 50px;
+    padding: 20px;
+  }
+  #logo {
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
 `;
 
 /** Nav components */
@@ -134,10 +144,18 @@ export const SaleTitle = styled.div`
 
 export const SaleUl = styled.ul`
   list-style: none;
-  padding: 0;
+  padding: 0 0 0 20px;
 `;
 
-export const SaleLi = styled.li``;
+export const SaleLi = styled.li`
+  display: flex;
+  height: 80px;
+  padding: 10px 0;
+  border-bottom: 1px solid grey;
+  img {
+    margin-right: 10px;
+  }
+`;
 
 /** roulette page components */
 export const RouletteContainer = styled.div`
@@ -208,6 +226,108 @@ export const RestaurantElem = styled.div`
   display: flex;
   width: 100%;
   height: 80px;
+  padding: 10px 0;
+  border-bottom: 1px solid grey;
 `;
-export const RestaurantImg = styled.img``;
+
+export const RestaurantElemLeft = styled.div`
+  display: flex;
+  margin-right: auto;
+`;
+export const RestaurantElemRight = styled.div``;
+
+export const RestaurantImg = styled.img`
+  height: 100%;
+  margin-right: 10px;
+`;
 export const RestaurantInfo = styled.div``;
+
+export const ModalContainer = styled.div`
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  .modal button {
+    outline: none;
+    cursor: pointer;
+    border: 0;
+  }
+  .modal > section {
+    width: 90%;
+    max-width: 450px;
+    margin: 0 auto;
+    border-radius: 0.3rem;
+    background-color: #fff;
+    /* 팝업이 열릴때 스르륵 열리는 효과 */
+    animation: modal-show 0.3s;
+    overflow: hidden;
+  }
+  .modal > section > header {
+    position: relative;
+    padding: 16px 64px 16px 16px;
+    background-color: #f1f1f1;
+    font-weight: 700;
+  }
+  .modal > section > header button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    font-size: 21px;
+    font-weight: 700;
+    text-align: center;
+    color: #999;
+    background-color: transparent;
+  }
+  .modal > section > main {
+    padding: 16px;
+    border-bottom: 1px solid #dee2e6;
+    border-top: 1px solid #dee2e6;
+  }
+  .modal > section > footer {
+    padding: 12px 16px;
+    text-align: right;
+  }
+  .modal > section > footer button {
+    padding: 6px 12px;
+    color: #fff;
+    background-color: #6c757d;
+    border-radius: 5px;
+    font-size: 13px;
+  }
+  .modal.openModal {
+    display: flex;
+    align-items: center;
+    /* 팝업이 열릴때 스르륵 열리는 효과 */
+    animation: modal-bg-show 0.3s;
+  }
+  @keyframes modal-show {
+    from {
+      opacity: 0;
+      margin-top: -50px;
+    }
+    to {
+      opacity: 1;
+      margin-top: 0;
+    }
+  }
+  @keyframes modal-bg-show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
+
+export const MapInfo = styled.div`
+  border-radius: 5px;
+  text-align: center;
+`;
