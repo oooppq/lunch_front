@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
@@ -10,6 +9,7 @@ import {
 
 import loadingIcon from "../img/loading.svg";
 import { getRestaurantById } from "../utils/findData";
+import { useNavigate } from "react-router-dom";
 
 export const HomeSlider = (props) => {
   const settings = {
@@ -23,11 +23,12 @@ export const HomeSlider = (props) => {
     autoplay: true, //자동 재생 할 것인지
     autoplaySpeed: 3000,
   };
+  const navigate = useNavigate();
 
   return (
     <div>
       {props.loading ? (
-        <div>
+        <div className="loading">
           <img src={loadingIcon} alt="" />
         </div>
       ) : (
@@ -37,7 +38,7 @@ export const HomeSlider = (props) => {
               props.restaurant,
               menu.restaurant
             );
-            return SliderElemMaker(restaurant, menu);
+            return SliderElemMaker(restaurant, menu, navigate);
           })}
         </StyledSlider>
       )}
@@ -45,9 +46,14 @@ export const HomeSlider = (props) => {
   );
 };
 
-export const SliderElemMaker = (restaurant, menu) => {
+export const SliderElemMaker = (restaurant, menu, navigate) => {
+  const gotoDetailOnClick = async (e) => {
+    const id = e.currentTarget.id;
+    navigate("index/" + id);
+  };
+
   return (
-    <SliderElem key={menu.id}>
+    <SliderElem id={restaurant.id} key={menu.id} onClick={gotoDetailOnClick}>
       <SliderElemImg src={menu.menu_image}></SliderElemImg>
       <SliderElemInfo>
         <div className="mName">{menu.menu_name}</div>

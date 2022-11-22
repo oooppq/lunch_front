@@ -7,6 +7,7 @@ import Index from "./elements/Index";
 import Nav from "./elements/Nav";
 import Roulette from "./elements/Roulette";
 import Accounts from "./elements/Accounts";
+import Detail from "./elements/Detail";
 
 const App = () => {
   const [options, setOptions] = useState([]);
@@ -21,6 +22,7 @@ const App = () => {
             path="/index"
             element={<Index setOptions={setOptions} />}
           ></Route>
+          <Route path="/index/:id" element={<Detail />}></Route>
           <Route
             path="/roulette"
             element={<Roulette options={options} />}

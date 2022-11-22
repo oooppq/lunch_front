@@ -7,30 +7,37 @@ import {
   SaleTitle,
   SaleUl,
   SaleLi,
+  SaleLiLeft,
+  SaleLiRight,
 } from "../styledComponents";
-import { getData, getMultiData } from "../utils/getApi";
+import { getMultiData } from "../utils/getApi";
 import { HomeSlider } from "./SliderUtils";
 import loadingIcon from "../img/loading.svg";
 import { getMenuById, getRestaurantById } from "../utils/findData";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [rest, setRest] = useState(null);
   const [menu, setMenu] = useState(null);
   const [sale, setSale] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  const restUrl = "http://127.0.0.1:8000/restaurants";
+  const navigate = useNavigate();
+  const restUrl = "http://127.0.0.1:8000/restaurants/all";
   const menuUrl = "http://127.0.0.1:8000/menu/all";
-  const saleUrl = "http://127.0.0.1:8000/menu/sale";
+  const saleUrl = "http://127.0.0.1:8000/menu/allsale";
 
   useEffect(() => {
-    // getData(setSale, setLoading, restUrl);
     getMultiData([setRest, setMenu, setSale], setLoading, [
       restUrl,
       menuUrl,
       saleUrl,
     ]);
   }, []);
+
+  const gotoDetailOnClick = async (e) => {
+    const id = e.currentTarget.id;
+    navigate("index/" + id);
+  };
 
   return (
     <HomeContainer>
@@ -46,7 +53,7 @@ const Home = () => {
       <SaleContainer>
         <SaleTitle>오늘의 할인</SaleTitle>
         {loading ? (
-          <div>
+          <div className="loading">
             <img src={loadingIcon} alt="" />
           </div>
         ) : (
@@ -57,16 +64,29 @@ const Home = () => {
 
               return (
                 <SaleLi key={s.id}>
-                  <img src={s.menu_image} alt="" />
-                  <div>
-                    <span>{restaurant.store_name}</span>
-                    <br />
-                    <span>메뉴이름 </span>
-                    <span>{s.menu_name}</span>
-                    <br />
-                    <span>{m.menu_price} </span>
-                    <span>{s.menu_price}</span>
-                  </div>
+                  <SaleLiLeft id={restaurant.id} onClick={gotoDetailOnClick}>
+                    <img src={m.menu_image} alt="" />
+                    <div>
+                      <div>
+                        <span>{restaurant.store_name}</span>
+                        <br />
+
+                        <span>{m.menu_name}</span>
+                        <br />
+                        <span>{m.menu_price} </span>
+                        <span>{s.sale_price}</span>
+                      </div>
+                    </div>
+                  </SaleLiLeft>
+                  <SaleLiRight>
+                    <div>찜하기</div>
+                    {/* <div
+                      onClick={() => {
+                        props.setOptions((prev) => [...prev, param.store_name]);
+                      }}
+                    > */}
+                    <div>룰렛에 추가</div>
+                  </SaleLiRight>
                 </SaleLi>
               );
             })}

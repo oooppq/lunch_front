@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import bg from "./img/bg.png";
 
 /** 각 element에 필요한 styled component를 모아둠 */
 /** 엄청 많으니까 수정하고자하는 element 이름으로 검색해서 찾는게 빠름 */
@@ -14,13 +13,16 @@ export const Wrap = styled.div`
   width: 100%;
   align-items: center;
   padding-bottom: 100px;
-  //   background-image: url(${bg});
-  //   background-repeat: repeat;
+
   @media only screen and (min-width: 400px) {
     width: 400px;
     margin: 0 auto;
     left: 0;
     right: 0;
+  }
+
+  .loading {
+    text-align: center !important;
   }
 `;
 
@@ -140,7 +142,8 @@ export const SliderElemInfo = styled.div`
 `;
 
 export const SaleContainer = styled.div`
-  width: 100%;
+  width: 350px;
+  margin: 0 auto;
 `;
 
 export const SaleTitle = styled.div`
@@ -151,7 +154,7 @@ export const SaleTitle = styled.div`
 
 export const SaleUl = styled.ul`
   list-style: none;
-  padding: 0 0 0 20px;
+  padding: 0;
 `;
 
 export const SaleLi = styled.li`
@@ -159,10 +162,18 @@ export const SaleLi = styled.li`
   height: 80px;
   padding: 10px 0;
   border-top: 1px solid grey;
+`;
+
+export const SaleLiLeft = styled.div`
+  display: flex;
+  margin-right: auto;
   img {
+    height: 100%;
     margin-right: 10px;
+    border-radius: 10%;
   }
 `;
+export const SaleLiRight = styled.div``;
 
 /** roulette page components */
 export const RouletteContainer = styled.div`
@@ -212,6 +223,7 @@ export const RouletteContainer = styled.div`
   }
 `;
 
+/** Index page components */
 export const IndexContainer = styled.div`
   width: 350px;
   margin: 0 auto;
@@ -250,6 +262,11 @@ export const RestaurantImg = styled.img`
   border-radius: 10%;
 `;
 export const RestaurantInfo = styled.div``;
+
+export const MapInfo = styled.div`
+  border-radius: 5px;
+  text-align: center;
+`;
 
 export const ModalContainer = styled.div`
   .modal {
@@ -336,7 +353,12 @@ export const ModalContainer = styled.div`
   }
 `;
 
-export const MapInfo = styled.div`
-  border-radius: 5px;
+export const DetailContainer = styled.div`
   text-align: center;
+  img {
+    width: 350px;
+  }
+  .restName {
+    font-weight: bolder;
+  }
 `;

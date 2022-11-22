@@ -16,8 +16,9 @@ import { getData } from "../utils/getApi";
 import loadingIcon from "../img/loading.svg";
 import { type, location_type } from "../data";
 import classnames from "classnames";
-import axios from "axios";
-import Modal from "./Modal";
+
+// import Modal from "./Modal";
+import { useNavigate } from "react-router-dom";
 
 const Index = (props) => {
   const [isMap, setMap] = useState(false);
@@ -25,8 +26,8 @@ const Index = (props) => {
   const [menu, setMenu] = useState(null);
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false);
-  const url = "http://127.0.0.1:8000/restaurants/";
-
+  const url = "http://127.0.0.1:8000/restaurants/all/";
+  const navigate = useNavigate();
   const indexOnclick = (e) => {
     setMap(!isMap);
   };
@@ -37,15 +38,12 @@ const Index = (props) => {
 
   const restOnClick = async (e) => {
     const id = e.currentTarget.id;
-    const menuUrl = url + id + "/menu";
-    const res = await axios.get(menuUrl);
-    setMenu(res.data);
-    setModal(true);
+    navigate("./" + id);
   };
 
-  const modalOff = () => {
-    setModal(false);
-  };
+  // const modalOff = () => {
+  //   // setModal(false);
+  // };
 
   const restaurantElemMaker = (param) => {
     return (
@@ -106,7 +104,7 @@ const Index = (props) => {
         })}
       </LocationNavBar>
       {loading ? (
-        <div>
+        <div className="loading">
           <img src={loadingIcon} alt="" />
         </div>
       ) : isMap ? (
@@ -135,7 +133,7 @@ const Index = (props) => {
           </RestaurantListDiv>
         </div>
       )}
-      <Modal open={modal} menu={menu} modalOff={modalOff}></Modal>
+      {/* <Modal open={modal} menu={menu} modalOff={modalOff}></Modal> */}
     </IndexContainer>
   );
 };
