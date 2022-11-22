@@ -135,19 +135,6 @@ const Index = (props) => {
           </RestaurantListDiv>
         </div>
       )}
-      {/* {modal ? (
-        <div>
-          {menu.map((m) => {
-            return (
-              <div>
-                {m.menu_name} <span onClick={modalOff}>x</span>
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        <></>
-      )} */}
       <Modal open={modal} menu={menu} modalOff={modalOff}></Modal>
     </IndexContainer>
   );

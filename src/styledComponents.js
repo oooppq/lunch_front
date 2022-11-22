@@ -5,6 +5,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import bg from "./img/bg.png";
 
+/** 각 element에 필요한 styled component를 모아둠 */
+/** 엄청 많으니까 수정하고자하는 element 이름으로 검색해서 찾는게 빠름 */
+
 /** page wrapper */
 export const Wrap = styled.div`
   align-items: center;
@@ -111,18 +114,22 @@ export const RecommSlider = styled.div`
 `;
 
 export const SliderElem = styled.div`
+  //   width: 80% !important;
+  //   margin: 0 auto !important;
   width: 100%;
   height: 10%;
   padding-top: 10px;
 `;
 
 export const SliderElemImg = styled.img`
-  width: 80%;
-  margin: auto;
+  width: 80% !important;
+  margin: 0 auto !important;
+  border-radius: 10% !important;
 `;
 
 export const SliderElemInfo = styled.div`
-  width: 100%;
+  width: 80% !important;
+  margin: 0 auto !important;
   .mName {
     text-align: center;
     font-weight: bolder;
@@ -151,7 +158,7 @@ export const SaleLi = styled.li`
   display: flex;
   height: 80px;
   padding: 10px 0;
-  border-bottom: 1px solid grey;
+  border-top: 1px solid grey;
   img {
     margin-right: 10px;
   }
@@ -217,6 +224,7 @@ export const LocationNavBar = styled.ul`
   padding: 0;
   justify-content: center;
 `;
+
 export const LocationElement = styled.li`
   padding: 0 10px;
 `;
@@ -227,7 +235,7 @@ export const RestaurantElem = styled.div`
   width: 100%;
   height: 80px;
   padding: 10px 0;
-  border-bottom: 1px solid grey;
+  border-top: 1px solid grey;
 `;
 
 export const RestaurantElemLeft = styled.div`
@@ -239,6 +247,7 @@ export const RestaurantElemRight = styled.div``;
 export const RestaurantImg = styled.img`
   height: 100%;
   margin-right: 10px;
+  border-radius: 10%;
 `;
 export const RestaurantInfo = styled.div``;
 

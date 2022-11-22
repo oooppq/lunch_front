@@ -15,11 +15,9 @@ const Header = (props) => {
   };
   return (
     <HeaderDiv className="title" onClick={headerOnClick}>
-      {/* <div>{props.options.length}</div> */}
       <img src={optionsLogo} alt="" />
       <img id="logo" src={titleLogo} alt="" />
       <img src={accountsLogo} alt="" id="accounts" />
-      {/* <div >로그인</div> */}
     </HeaderDiv>
   );
 };

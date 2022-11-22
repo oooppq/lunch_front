@@ -9,9 +9,9 @@ import {
 } from "../styledComponents";
 
 import loadingIcon from "../img/loading.svg";
-import { getData } from "../utils/getApi";
+import { getRestaurantById } from "../utils/findData";
 
-export const HomeSlider = () => {
+export const HomeSlider = (props) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -20,29 +20,24 @@ export const HomeSlider = () => {
     slidesToScroll: 1,
     lazyLoad: true,
     textAlign: "center",
+    autoplay: true, //자동 재생 할 것인지
+    autoplaySpeed: 3000,
   };
-
-  const [restData, setRestData] = useState(null);
-  const [menuData, setMenuData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const restUrl = "http://127.0.0.1:8000/restaurants";
-  const menuUrl = "http://127.0.0.1:8000/menu/all";
-
-  useEffect(() => {
-    getData(setMenuData, setLoading, menuUrl);
-    // getData(setRestData, setLoading, restUrl);
-  }, []);
 
   return (
     <div>
-      {loading ? (
+      {props.loading ? (
         <div>
           <img src={loadingIcon} alt="" />
         </div>
       ) : (
         <StyledSlider {...settings} height="100%;">
-          {menuData.map((props) => {
-            return SliderElemMaker(props);
+          {props.menu.map((menu) => {
+            let restaurant = getRestaurantById(
+              props.restaurant,
+              menu.restaurant
+            );
+            return SliderElemMaker(restaurant, menu);
           })}
         </StyledSlider>
       )}
@@ -50,14 +45,15 @@ export const HomeSlider = () => {
   );
 };
 
-export const SliderElemMaker = (props) => {
+export const SliderElemMaker = (restaurant, menu) => {
   return (
-    <SliderElem key={props.id}>
-      <SliderElemImg src={props.menu_image}></SliderElemImg>
+    <SliderElem key={menu.id}>
+      <SliderElemImg src={menu.menu_image}></SliderElemImg>
       <SliderElemInfo>
-        <div className="mName">{props.menu_name}</div>
-        <div className="rName">{props.menu_price}</div>
-        {/* <div className="rName">{props.explain}</div> */}
+        <div className="mName">{menu.menu_name}</div>
+        <div className="rName">{restaurant.store_name}</div>
+        <div className="rName">가격: {menu.menu_price}원</div>
+        <div className="rName">"{restaurant.explain}"</div>
       </SliderElemInfo>
     </SliderElem>
   );
