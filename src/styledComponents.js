@@ -203,6 +203,20 @@ export const SaleLiRight = styled.div`
     padding: 0;
     background-color: rgba(255, 232, 198, 0.5);
   }
+  margin: 5px;
+  span {
+    margin: 0px 1.5px;
+    padding: 0;
+    text-align: center;
+    border: 3px solid rgba(166, 166, 166, 0.6);
+    font-size: 12px;
+
+    padding: 1px;
+    border-radius: 3px;
+  }
+  span:active {
+    background-color: rgba(166, 166, 166, 0.6);
+  }
 `;
 
 /** roulette page components */
@@ -262,6 +276,8 @@ export const IndexContainer = styled.div`
 export const MapChild = styled.div`
   background: linear-gradient(to top, #ffe400 50%, transparent 50%);
   display: inline;
+  //background: linear-gradient(to top,#FFB788 30%,transparent 50%);
+  display: inline;
 `;
 
 export const LocationNavBar = styled.ul`
@@ -288,12 +304,21 @@ export const RestaurantListDiv = styled.div``;
 export const RestaurantListDivChild = styled.div`
   padding-bottom: 10px;
   font-weight: bold;
+  padding-bottom: 10px;
+  font-weight: bold;
+  border-bottom: 1.5px solid gray;
 `;
 export const RestaurantElem = styled.div`
   margin: 10px 5px;
   width: 95%;
   padding: 10px 0;
   border-top: 3px solid rgba(255, 232, 198, 0.8);
+  box-shadow: 0 0 20px lightgray;
+  border-radius: 5%;
+`;
+export const RestaurantElement = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 3fr;
 `;
 
 export const RestaurantElemLeft = styled.div`
@@ -304,7 +329,23 @@ export const RestaurantElemRight = styled.div`
     margin: 10px;
     padding: 0;
     background-color: rgba(255, 232, 198, 0.5);
+margin-left:60px;
+span{
+    margin:3px;
+    padding:0;
+    text-align:center;
+    border:2px solid rgba(166,166,166,0.9);
+    font-size:13px;
+    padding:1px;
+    border-radius:3px;
+  
   }
+  span:active{
+    background-color:rgba(166,166,166,0.9);
+   
+  }
+
+
 `;
 
 export const RestaurantImg = styled.img`
