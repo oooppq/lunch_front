@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import KakaoMap from "./KakaoMap";
+
 import {
   IndexContainer,
   MapChild,
@@ -11,6 +12,7 @@ import {
   RestaurantElemLeft,
   RestaurantElemRight,
   RestaurantElemRightChild,
+  RestaurantElement,
   RestaurantImg,
   RestaurantInfo,
 } from "../styledComponents";
@@ -19,7 +21,7 @@ import { getData } from "../utils/getApi";
 import loadingIcon from "../img/loading.svg";
 import { type, location_type } from "../data";
 import classnames from "classnames";
-
+import img from "../img/recom/1.png";
 // import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
 
@@ -31,6 +33,7 @@ const Index = (props) => {
   const [modal, setModal] = useState(false);
   const url = "http://127.0.0.1:8000/restaurants/all/";
   const navigate = useNavigate();
+  const [tab, setTab] = useState(true);
   const indexOnclick = (e) => {
     setMap(!isMap);
   };
@@ -54,23 +57,29 @@ const Index = (props) => {
         key={param.id}
         className={classnames("restElem", param.location_type)}
       >
-        <RestaurantElemLeft id={param.id} onClick={restOnClick}>
-          <RestaurantImg src={param.store_image}></RestaurantImg>
-          <RestaurantInfo>
-            <div>{param.store_name}</div>
-            <div>{param.location_type}</div>
-          </RestaurantInfo>
-        </RestaurantElemLeft>
-        <RestaurantElemRight>
-          <div>❤️찜하기</div>
-          <div
-            onClick={() => {
-              props.setOptions((prev) => [...prev, param.store_name]);
-            }}
-          >
-            룰렛에 추가
-          </div>
-        </RestaurantElemRight>
+        <RestaurantImg src={img}>
+
+        </RestaurantImg>
+        <RestaurantElement>
+          <RestaurantElemLeft id={param.id} onClick={restOnClick}>
+
+            <RestaurantInfo>
+              <div className="name">{param.store_name}</div>
+              <span>#{param.location_type} </span>
+              <span>#{param.type}</span>
+            </RestaurantInfo>
+          </RestaurantElemLeft>
+          <RestaurantElemRight>
+            <span >찜하기</span>
+            <span
+              onClick={() => {
+                props.setOptions((prev) => [...prev, param.store_name]);
+              }}
+            >
+              룰렛에 추가
+            </span>
+          </RestaurantElemRight>
+        </RestaurantElement>
       </RestaurantElem>
     );
   };
@@ -81,7 +90,7 @@ const Index = (props) => {
       let restElems = document.querySelectorAll(".restElem");
       for (let restElem of restElems) {
         if (loc == restElem.classList[3]) {
-          restElem.style.display = "flex";
+          restElem.style.display = "block";
         } else {
           restElem.style.display = "none";
         }
@@ -114,19 +123,19 @@ const Index = (props) => {
       ) : (
         <div>
           <RestaurantListDiv>
-            <RestaurantListDivChild>한식🍚</RestaurantListDivChild>
+            <RestaurantListDivChild>한식</RestaurantListDivChild>
             {restaurants.map((restaurant) => {
               if (restaurant.type === "한식")
                 return restaurantElemMaker(restaurant);
               else return null;
             })}
-            <RestaurantListDivChild>중식🥮</RestaurantListDivChild>
+            <RestaurantListDivChild>중식</RestaurantListDivChild>
             {restaurants.map((restaurant) => {
               if (restaurant.type === "중식")
                 return restaurantElemMaker(restaurant);
               else return null;
             })}
-            <RestaurantListDivChild>일식🍜</RestaurantListDivChild>
+            <RestaurantListDivChild>일식</RestaurantListDivChild>
             {restaurants.map((restaurant) => {
               if (restaurant.type === "일식")
                 return restaurantElemMaker(restaurant);

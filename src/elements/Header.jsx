@@ -15,9 +15,9 @@ const Header = (props) => {
   };
   return (
     <HeaderDiv className="title" onClick={headerOnClick}>
-      <img src={optionsLogo} alt="" />
+
       <img id="logo" src={titleLogo} alt="" />
-      <img src={accountsLogo} alt="" id="accounts" />
+
     </HeaderDiv>
   );
 };

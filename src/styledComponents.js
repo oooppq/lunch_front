@@ -29,8 +29,7 @@ export const Wrap = styled.div`
 /** Header components */
 export const HeaderDiv = styled.div`
   text-align: center;
-  display: flex;
-  justify-content: center;
+ 
   height: 90px;
   padding: 10px 0;
   img {
@@ -42,6 +41,10 @@ export const HeaderDiv = styled.div`
     margin: 0 auto;
     padding: 0;
   }
+  .account{
+  
+  
+  }
 `;
 
 /** Nav components */
@@ -52,13 +55,14 @@ export const NavUl = styled.ul`
   bottom: 0;
   width: 100%;
   z-index: 9999;
-  background-color: #ffe4bc;
+  background-color: white;
   list-style: none;
   display: flex;
   justify-content: center;
   padding: 20px 0;
   margin: 0;
-  border-radius: 10px 10px 0 0;
+  
+  box-shadow:0 -3px 3px #dcdcdc;
   @media only screen and (min-width: 400px) {
     width: 400px;
     margin: 0 auto;
@@ -130,7 +134,7 @@ export const SliderElemImg = styled.img`
   width: 80% !important;
   margin: 0 auto !important;
   border-radius: 10% !important;
-  border: 5px solid rgba(255,232,198,0.8);
+  
 `;
 
 export const SliderElemInfo = styled.div`
@@ -166,31 +170,56 @@ export const SaleTitle = styled.div`
 export const SaleUl = styled.ul`
   list-style: none;
   padding: 0;
+
 `;
 
 export const SaleLi = styled.li`
-  display: flex;
-  height: 80px;
   padding: 10px 0;
   border-top: 1px solid grey;
-`;
-
-export const SaleLiLeft = styled.div`
-  display: flex;
-  margin-right: auto;
+  
   img {
+    width:96%;
     height: 100%;
-    margin-right: 10px;
+    margin-left:10px;
     border-radius: 10%;
+   
+  }
+`;
+export const SaleBox = styled.li`
+display:grid;
+  grid-template-columns: 1.5fr 1fr ;
+
+
+`;
+export const SaleLiLeft = styled.div`
+  margin-left: 5px;
+  font-size:15px;
+ 
+  .name{
+    font-weight:bolder;
+    font-size:18px;
+  }
+  .price{
+    text-decoration:line-through;
+
   }
 `;
 export const SaleLiRight = styled.div`
-
-div{
-  margin:10px;
+margin:5px;
+span{
+  margin:0px 1.5px;
   padding:0;
-  background-color:rgba(255,232,198,0.5);
+  text-align:center;
+  border:3px solid rgba(166,166,166,0.6);
+  font-size:12px;
 
+  padding:1px;
+  border-radius:3px;
+
+}
+span:active{
+
+  background-color:rgba(166,166,166,0.6);
 }
 `;
 
@@ -250,7 +279,7 @@ export const IndexContainer = styled.div`
   
 `;
 export const MapChild = styled.div`
-background: linear-gradient(to top,#FFE400 50%,transparent 50%);
+//background: linear-gradient(to top,#FFB788 30%,transparent 50%);
 display:inline;
 `;
 
@@ -265,13 +294,14 @@ export const LocationNavBar = styled.ul`
 export const LocationElement = styled.li`
  div{ padding:  5px 5px;
   margin: 0 6px;
+  border-top:2px solid white;
+ 
+  // background-color:rgba(224,0,0,0.8);
   
-  // background-color:rgba(255,232,198,0.8);
-  border-radius:50%;
   
  }
  div:hover{
-  background-color:rgba(255,232,198,0.8);
+  border-top:2px solid rgba(224,0,0,0.8);
  
  }
 
@@ -283,38 +313,62 @@ export const RestaurantListDiv = styled.div`
 export const RestaurantListDivChild = styled.div`
 padding-bottom:10px;
  font-weight:bold;
+ border-bottom: 1.5px solid rgba(224,0,0,0.8);
 `;
 export const RestaurantElem = styled.div`
-  display: flex;
-  width: 100%;
-  height: 80px;
+margin:10px 5px;
+  width: 95%;
   padding: 10px 0;
-  border-top: 3px solid rgba(255,232,198,0.8);
+box-shadow: 0 0 20px lightgray;
+border-radius:5%;
+
+`;
+export const RestaurantElement = styled.div`
+
+display: grid;
+grid-template-columns: 2fr 3fr ;
 `;
 
 export const RestaurantElemLeft = styled.div`
-  display: flex;
-  margin-right: auto;
+
+  // margin-right: auto;
 `;
 export const RestaurantElemRight = styled.div`
-  div{
-    margin:10px;
+margin-left:60px;
+span{
+    margin:3px;
     padding:0;
-    background-color:rgba(255,232,198,0.5);
+    text-align:center;
+    border:2px solid rgba(166,166,166,0.9);
+    font-size:13px;
+    padding:1px;
+    border-radius:3px;
   
   }
+  span:active{
+    background-color:rgba(166,166,166,0.9);
+   
+  }
+
 
 `;
 
 
 
 export const RestaurantImg = styled.img`
-  height: 100%;
+  height: 80%;
+  width:100%;
   margin-right: 10px;
+
   border-radius: 10%;
 `;
 export const RestaurantInfo = styled.div`
 line-height:160%;
+padding-left:30px;
+.name{
+  font-weight:bolder;
+
+}
 
 `;
 
@@ -419,4 +473,5 @@ export const DetailContainer = styled.div`
   .restName {
     font-weight: bolder;
   }
+  
 `;

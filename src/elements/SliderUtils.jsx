@@ -6,6 +6,7 @@ import {
   SliderElemImg,
   SliderElemInfo,
 } from "../styledComponents";
+import imgtwo from "../img/recom/2.png";
 
 import loadingIcon from "../img/loading.svg";
 import { getRestaurantById } from "../utils/findData";
@@ -54,7 +55,7 @@ export const SliderElemMaker = (restaurant, menu, navigate) => {
 
   return (
     <SliderElem id={restaurant.id} key={menu.id} onClick={gotoDetailOnClick}>
-      <SliderElemImg src={menu.menu_image}></SliderElemImg>
+      <SliderElemImg src={imgtwo}></SliderElemImg>
       <SliderElemInfo>
         <div className="mName">{menu.menu_name}</div>
         <div className="rName">{restaurant.store_name}</div>

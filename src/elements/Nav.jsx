@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import homeImg from "../img/home.png";
 import foodImg from "../img/food.png";
 import rouletteImg from "../img/roulette.png";
-
+import titleLogo from "../img/logo2.png";
+import accountsLogo from "../img/accounts.png";
 const Nav = () => {
   const navigate = useNavigate();
   const navOnClick = (e) => {
@@ -16,6 +17,7 @@ const Nav = () => {
     } else if (id === "roulette") {
       navigate("/roulette");
     }
+    else navigate("/accounts");
   };
   return (
     <NavUl>
@@ -28,6 +30,10 @@ const Nav = () => {
       <NavLi>
         <NavImg src={rouletteImg} id="roulette" onClick={navOnClick}></NavImg>
       </NavLi>
+      <NavLi>
+        <NavImg src={accountsLogo} id="accounts" onClick={navOnClick}></NavImg>
+      </NavLi>
+
     </NavUl>
   );
 };
