@@ -7,6 +7,7 @@ import {
   SaleTitle,
   SaleUl,
   SaleLi,
+  SaleBox,
   SaleLiLeft,
   SaleLiRight,
 } from "../styledComponents";
@@ -68,29 +69,28 @@ const Home = () => {
 
               return (
                 <SaleLi key={s.id}>
-                  <SaleLiLeft id={restaurant.id} onClick={gotoDetailOnClick}>
-                    <img src={m.menu_image} alt="" />
-                    <div>
+                  <img src={m.menu_image} alt="" />
+                  <SaleBox>
+                    <SaleLiLeft id={restaurant.id} onClick={gotoDetailOnClick}>
                       <div>
-                        <span>{restaurant.store_name}</span>
-                        <br />
+                        <span className="name">{restaurant.store_name} </span>
 
                         <span>{m.menu_name}</span>
                         <br />
-                        <span>{m.menu_price} </span>
-                        <span>{s.sale_price}</span>
+                        <span className="price">{m.menu_price} </span>
+                        <span className="salePrice">{s.sale_price}</span>
                       </div>
-                    </div>
-                  </SaleLiLeft>
-                  <SaleLiRight>
-                    <div>❤️찜하기</div>
-                    {/* <div
+                    </SaleLiLeft>
+                    <SaleLiRight>
+                      <span>찜하기</span>
+                      {/* <div
                       onClick={() => {
                         props.setOptions((prev) => [...prev, param.store_name]);
                       }}
                     > */}
-                    <div>룰렛에 추가</div>
-                  </SaleLiRight>
+                      <span>룰렛에 추가</span>
+                    </SaleLiRight>
+                  </SaleBox>
                 </SaleLi>
               );
             })}

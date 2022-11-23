@@ -29,8 +29,7 @@ export const Wrap = styled.div`
 /** Header components */
 export const HeaderDiv = styled.div`
   text-align: center;
-  display: flex;
-  justify-content: center;
+
   height: 90px;
   padding: 10px 0;
   img {
@@ -42,6 +41,8 @@ export const HeaderDiv = styled.div`
     margin: 0 auto;
     padding: 0;
   }
+  .account {
+  }
 `;
 
 /** Nav components */
@@ -52,13 +53,14 @@ export const NavUl = styled.ul`
   bottom: 0;
   width: 100%;
   z-index: 9999;
-  background-color: #ffe4bc;
+  background-color: white;
   list-style: none;
   display: flex;
   justify-content: center;
   padding: 20px 0;
   margin: 0;
-  border-radius: 10px 10px 0 0;
+
+  box-shadow: 0 -3px 3px #dcdcdc;
   @media only screen and (min-width: 400px) {
     width: 400px;
     margin: 0 auto;
@@ -69,12 +71,17 @@ export const NavUl = styled.ul`
 
 export const NavLi = styled.li`
   padding: 0 7%;
+  margin: auto;
   hight: 15%;
   width: 15%;
+  .icon {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export const NavImg = styled.img`
-  hight: 100%;
+  height: 100%;
   width: 100%;
 `;
 
@@ -164,19 +171,30 @@ export const SaleUl = styled.ul`
 `;
 
 export const SaleLi = styled.li`
-  display: flex;
-  height: 80px;
   padding: 10px 0;
   border-top: 1px solid grey;
-`;
 
-export const SaleLiLeft = styled.div`
-  display: flex;
-  margin-right: auto;
   img {
+    width: 96%;
     height: 100%;
-    margin-right: 10px;
+    margin-left: 10px;
     border-radius: 10%;
+  }
+`;
+export const SaleBox = styled.li`
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+`;
+export const SaleLiLeft = styled.div`
+  margin-left: 5px;
+  font-size: 15px;
+
+  .name {
+    font-weight: bolder;
+    font-size: 18px;
+  }
+  .price {
+    text-decoration: line-through;
   }
 `;
 export const SaleLiRight = styled.div`
@@ -272,16 +290,14 @@ export const RestaurantListDivChild = styled.div`
   font-weight: bold;
 `;
 export const RestaurantElem = styled.div`
-  display: flex;
-  width: 100%;
-  height: 80px;
+  margin: 10px 5px;
+  width: 95%;
   padding: 10px 0;
   border-top: 3px solid rgba(255, 232, 198, 0.8);
 `;
 
 export const RestaurantElemLeft = styled.div`
-  display: flex;
-  margin-right: auto;
+  // margin-right: auto;
 `;
 export const RestaurantElemRight = styled.div`
   div {
@@ -292,8 +308,10 @@ export const RestaurantElemRight = styled.div`
 `;
 
 export const RestaurantImg = styled.img`
-  height: 100%;
+  height: 80%;
+  width: 100%;
   margin-right: 10px;
+
   border-radius: 10%;
 `;
 export const RestaurantInfo = styled.div`
