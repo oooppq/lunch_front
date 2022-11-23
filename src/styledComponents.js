@@ -73,12 +73,17 @@ export const NavUl = styled.ul`
 
 export const NavLi = styled.li`
   padding: 0 7%;
+  margin:auto;
   hight: 15%;
   width: 15%;
+  .icon{
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export const NavImg = styled.img`
-  hight: 100%;
+  height: 100%;
   width: 100%;
 `;
 
@@ -313,7 +318,7 @@ export const RestaurantListDiv = styled.div`
 export const RestaurantListDivChild = styled.div`
 padding-bottom:10px;
  font-weight:bold;
- border-bottom: 1.5px solid rgba(224,0,0,0.8);
+ border-bottom: 1.5px solid gray;
 `;
 export const RestaurantElem = styled.div`
 margin:10px 5px;

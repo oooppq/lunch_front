@@ -6,6 +6,12 @@ import foodImg from "../img/food.png";
 import rouletteImg from "../img/roulette.png";
 import titleLogo from "../img/logo2.png";
 import accountsLogo from "../img/accounts.png";
+import * as  BiIcons from "react-icons/bi";
+import * as  VscIcons from "react-icons/vsc";
+import * as  BsIcons from "react-icons/bs";
+import * as  GrIcons from "react-icons/gr";
+
+
 const Nav = () => {
   const navigate = useNavigate();
   const navOnClick = (e) => {
@@ -22,16 +28,21 @@ const Nav = () => {
   return (
     <NavUl>
       <NavLi>
-        <NavImg src={foodImg} id="index" onClick={navOnClick}></NavImg>
+
+        <BsIcons.BsList className="icon" id="index" onClick={navOnClick} />
+
       </NavLi>
       <NavLi>
-        <NavImg src={homeImg} id="home" onClick={navOnClick}></NavImg>
+        <BiIcons.BiHomeAlt className="icon" id="home" onClick={navOnClick} />
+
       </NavLi>
       <NavLi>
-        <NavImg src={rouletteImg} id="roulette" onClick={navOnClick}></NavImg>
+
+        <GrIcons.GrGamepad className="icon" id="roulette" onClick={navOnClick} />
+
       </NavLi>
       <NavLi>
-        <NavImg src={accountsLogo} id="accounts" onClick={navOnClick}></NavImg>
+        <VscIcons.VscAccount className="icon" id="accounts" onClick={navOnClick} />
       </NavLi>
 
     </NavUl>
