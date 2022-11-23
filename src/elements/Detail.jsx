@@ -38,7 +38,7 @@ const Detail = () => {
           <div className="restName">{rest.store_name}</div>
           <div className="type">{rest.type}</div>
           <div className="locType">
-            {rest.location_type}
+            {rest.location_type}🚶
             <a
               className="mapLink"
               href={

@@ -51,7 +51,9 @@ const Home = () => {
       </RecommContainer>
 
       <SaleContainer>
-        <SaleTitle>오늘의 할인</SaleTitle>
+        <SaleTitle>
+          오늘의 <span>할인</span>{" "}
+        </SaleTitle>
         {loading ? (
           <div className="loading">
             <img src={loadingIcon} alt="" />
@@ -79,7 +81,7 @@ const Home = () => {
                     </div>
                   </SaleLiLeft>
                   <SaleLiRight>
-                    <div>찜하기</div>
+                    <div>❤️찜하기</div>
                     {/* <div
                       onClick={() => {
                         props.setOptions((prev) => [...prev, param.store_name]);

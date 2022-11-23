@@ -8,6 +8,7 @@ import Nav from "./elements/Nav";
 import Roulette from "./elements/Roulette";
 import Accounts from "./elements/Accounts";
 import Detail from "./elements/Detail";
+import "./App.css";
 
 const App = () => {
   const [options, setOptions] = useState([]);

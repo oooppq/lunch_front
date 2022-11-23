@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import KakaoMap from "./KakaoMap";
 import {
   IndexContainer,
+  MapChild,
   LocationNavBar,
   LocationElement,
   RestaurantListDiv,
+  RestaurantListDivChild,
   RestaurantElem,
   RestaurantElemLeft,
   RestaurantElemRight,
+  RestaurantElemRightChild,
   RestaurantImg,
   RestaurantInfo,
 } from "../styledComponents";
@@ -56,11 +59,10 @@ const Index = (props) => {
           <RestaurantInfo>
             <div>{param.store_name}</div>
             <div>{param.location_type}</div>
-            <div>{param.type}</div>
           </RestaurantInfo>
         </RestaurantElemLeft>
         <RestaurantElemRight>
-          <div>찜하기</div>
+          <div>❤️찜하기</div>
           <div
             onClick={() => {
               props.setOptions((prev) => [...prev, param.store_name]);
@@ -89,16 +91,16 @@ const Index = (props) => {
   return (
     <IndexContainer>
       {isMap ? (
-        <div onClick={indexOnclick}>목록보기</div>
+        <MapChild onClick={indexOnclick}>목록보기</MapChild>
       ) : (
-        <div onClick={indexOnclick}>지도보기</div>
+        <MapChild onClick={indexOnclick}>지도보기</MapChild>
       )}
 
       <LocationNavBar>
         {location_type.map((loc) => {
           return (
             <LocationElement onClick={locOnClick} key={loc.id} className="loc">
-              {loc.loc_type}
+              <div>{loc.loc_type}</div>
             </LocationElement>
           );
         })}
@@ -112,19 +114,19 @@ const Index = (props) => {
       ) : (
         <div>
           <RestaurantListDiv>
-            <div>한식</div>
+            <RestaurantListDivChild>한식🍚</RestaurantListDivChild>
             {restaurants.map((restaurant) => {
               if (restaurant.type === "한식")
                 return restaurantElemMaker(restaurant);
               else return null;
             })}
-            <div>중식</div>
+            <RestaurantListDivChild>중식🥮</RestaurantListDivChild>
             {restaurants.map((restaurant) => {
               if (restaurant.type === "중식")
                 return restaurantElemMaker(restaurant);
               else return null;
             })}
-            <div>일식</div>
+            <RestaurantListDivChild>일식🍜</RestaurantListDivChild>
             {restaurants.map((restaurant) => {
               if (restaurant.type === "일식")
                 return restaurantElemMaker(restaurant);
