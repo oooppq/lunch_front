@@ -15,9 +15,9 @@ import {
   RestaurantInfo,
 } from "../styledComponents";
 
-import { getData } from "../utils/getApi";
+import { getData } from "../utils/api";
 import loadingIcon from "../img/loading.svg";
-import { type, location_type } from "../data";
+import { location_type, baseUrl } from "../data";
 import classnames from "classnames";
 
 // import Modal from "./Modal";
@@ -29,7 +29,7 @@ const Index = (props) => {
   const [menu, setMenu] = useState(null);
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false);
-  const url = "http://127.0.0.1:8000/restaurants/all/";
+  const url = baseUrl + "restaurants/all/";
   const navigate = useNavigate();
   const indexOnclick = (e) => {
     setMap(!isMap);

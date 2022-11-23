@@ -10,11 +10,12 @@ import {
   SaleLiLeft,
   SaleLiRight,
 } from "../styledComponents";
-import { getMultiData } from "../utils/getApi";
+import { getMultiData } from "../utils/api";
 import { HomeSlider } from "./SliderUtils";
 import loadingIcon from "../img/loading.svg";
 import { getMenuById, getRestaurantById } from "../utils/findData";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../data";
 
 const Home = () => {
   const [rest, setRest] = useState(null);
@@ -22,9 +23,10 @@ const Home = () => {
   const [sale, setSale] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const restUrl = "http://127.0.0.1:8000/restaurants/all";
-  const menuUrl = "http://127.0.0.1:8000/menu/all";
-  const saleUrl = "http://127.0.0.1:8000/menu/allsale";
+
+  const restUrl = baseUrl + "restaurants/all";
+  const menuUrl = baseUrl + "menu/all";
+  const saleUrl = baseUrl + "menu/allsale";
 
   useEffect(() => {
     getMultiData([setRest, setMenu, setSale], setLoading, [

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getMultiData } from "../utils/getApi";
+import { getMultiData } from "../utils/api";
 import { getSaleById } from "../utils/findData";
 import { DetailContainer } from "../styledComponents";
 import loadingIcon from "../img/loading.svg";
+import { baseUrl } from "../data";
 
 const Detail = () => {
   const { id } = useParams();
@@ -14,9 +15,9 @@ const Detail = () => {
 
   const mapLink = "https://map.kakao.com/link/to/"; // 길찾기 링크
 
-  const restUrl = "http://127.0.0.1:8000/restaurants/all/" + id;
-  const menuUrl = "http://127.0.0.1:8000/restaurants/" + id + "/menu";
-  const saleUrl = "http://127.0.0.1:8000/menu/allsale";
+  const restUrl = baseUrl + "restaurants/all/" + id;
+  const menuUrl = baseUrl + "restaurants/" + id + "/menu";
+  const saleUrl = baseUrl + "menu/allsale";
 
   useEffect(() => {
     getMultiData([setRest, setMenu, setSale], setLoading, [
