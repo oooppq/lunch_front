@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-
+import {
+  AccountBox,
+} from "../styledComponents";
 const Accounts = () => {
   const [join, setJoin] = useState(false);
 
   return (
-    <div>
+    <AccountBox>
       {join ? (
         <div>
           <div>회원가입</div>
@@ -31,7 +33,7 @@ const Accounts = () => {
           </button>
         </div>
       )}
-    </div>
+    </AccountBox>
   );
 };
 

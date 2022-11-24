@@ -15,6 +15,10 @@ import {
 import { getMultiData } from "../utils/getApi";
 import { HomeSlider } from "./SliderUtils";
 import loadingIcon from "../img/loading.svg";
+import imag from "../img/recom/3.png";
+import left from "../img/left.png";
+import right from "../img/right.png";
+
 import { getMenuById, getRestaurantById } from "../utils/findData";
 import { useNavigate } from "react-router-dom";
 
@@ -44,7 +48,7 @@ const Home = () => {
   return (
     <HomeContainer>
       <RecommContainer>
-        <RecommTitle>오늘의 추천메뉴</RecommTitle>
+        <RecommTitle><span>s</span>오늘의 추천메뉴<span>s</span> </RecommTitle>
         <HomeSlider
           restaurant={rest}
           menu={menu}
@@ -53,6 +57,7 @@ const Home = () => {
       </RecommContainer>
 
       <SaleContainer>
+
         <SaleTitle>오늘의 <span>할인</span> </SaleTitle>
         {loading ? (
           <div className="loading">
@@ -66,7 +71,7 @@ const Home = () => {
 
               return (
                 <SaleLi key={s.id}>
-                  <img src={m.menu_image} alt="" />
+                  <img src={imag} alt="" />
                   <SaleBox>
                     <SaleLiLeft id={restaurant.id} onClick={gotoDetailOnClick}>
 
@@ -77,7 +82,7 @@ const Home = () => {
 
                         <span>{m.menu_name}</span>
                         <br />
-                        <span className="price">{m.menu_price} </span>
+                        <span className="price salePrice">{m.menu_price} </span>
                         <span className="salePrice">{s.sale_price}</span>
 
                       </div>
