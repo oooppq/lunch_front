@@ -18,14 +18,20 @@ const Accounts = (props) => {
   const [myStore, setMyStore] = useState(null);
   const [myMenu, setMyMenu] = useState(null);
   const [loading, setLoading] = useState(true);
-  const isAuth = localStorage.getItem("token");
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("token") != null);
+  // const isAuth =
 
   const onSubmit = () => {
     if (id == "" || pw == "") {
       if (id == "") console.log("아이디를 입력해주세요.");
       else if (pw == "") console.log("비밀번호를 입력해주세요.");
     } else {
-      props.handleLogin(id, pw);
+      let res = props.handleLogin(id, pw);
+      if (res) {
+        setIsAuth(true);
+        let url = baseUrl + "accounts/show-mystore/";
+        getData(setMyStore, setLoading, url);
+      }
     }
   };
   const testOnClick = async () => {
@@ -43,15 +49,21 @@ const Accounts = (props) => {
 
   return (
     <AccountsContainer>
-      {isAuth || props.state.authenticated ? (
-        <AuthenticatedDiv>
-          <div>찜목록</div>
-          <div>
-            {myStore.map((store) => {
-              return <div key={store.id}></div>;
-            })}
+      {isAuth ? (
+        loading ? (
+          <div className="loading">
+            <img src={loadingIcon} alt="" />
           </div>
-        </AuthenticatedDiv>
+        ) : (
+          <AuthenticatedDiv>
+            <div>찜목록</div>
+            <div>
+              {myStore.map((store) => {
+                return <div key={store.id}></div>;
+              })}
+            </div>
+          </AuthenticatedDiv>
+        )
       ) : join ? (
         <JoinDiv> </JoinDiv>
       ) : (

@@ -41,6 +41,7 @@ const App = () => {
         token: token,
         result: true,
       });
+      return true;
     } else {
       console.log("로그인 실패");
       dispatch({
@@ -48,6 +49,7 @@ const App = () => {
         token: null,
         result: false,
       });
+      return false;
     }
   }
   useEffect(() => {

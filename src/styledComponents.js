@@ -9,12 +9,13 @@ import "slick-carousel/slick/slick-theme.css";
 
 /** page wrapper */
 export const Wrap = styled.div`
+  box-sizing: border-box;
   align-items: center;
   width: 100%;
   align-items: center;
   padding-bottom: 100px;
   margin: auto;
-  border: 13px solid #ffe8c6;
+  border: 15px solid #ffe8c6;
 
   @media only screen and (min-width: 400px) {
     width: 398px;

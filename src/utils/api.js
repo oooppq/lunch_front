@@ -28,9 +28,7 @@ export const loginApi = async (id, pw) => {
       "Content-Type": "application/json",
     },
   });
-  res.catch(() => {
-    console.log("on loading");
-  });
+
   axios.defaults.headers.common["Authorization"] =
     "Bearer " + res.data.token.access;
   localStorage.setItem("token", JSON.stringify(res.data.token));
