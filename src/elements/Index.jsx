@@ -21,7 +21,7 @@ import { getData } from "../utils/api";
 import loadingIcon from "../img/loading.svg";
 import { location_type, baseUrl } from "../data";
 import classnames from "classnames";
-import img from "../img/recom/1.png";
+import img from "../img/recom/2.png";
 // import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
 

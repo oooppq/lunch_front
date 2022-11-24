@@ -6,6 +6,8 @@ import { DetailContainer } from "../styledComponents";
 import loadingIcon from "../img/loading.svg";
 import { baseUrl } from "../data";
 
+import img from "../img/recom/3.png";
+
 const Detail = () => {
   const { id } = useParams();
   const [rest, setRest] = useState(null);
@@ -35,43 +37,49 @@ const Detail = () => {
         </div>
       ) : (
         <>
-          <img src={rest.store_image} />
           <div className="restName">{rest.store_name}</div>
-          <div className="type">{rest.type}</div>
-          <div className="locType">
-            {rest.location_type}🚶
-            <a
-              className="mapLink"
-              href={
-                mapLink +
-                rest.store_name +
-                "," +
-                rest.latitude +
-                "," +
-                rest.longitude
-              }
-              target="_blank"
-            >
-              길찾기
-            </a>
-          </div>
+          <img src={img} />
+          <a
+            className="mapLink"
+            href={
+              mapLink +
+              rest.store_name +
+              "," +
+              rest.latitude +
+              "," +
+              rest.longitude
+            }
+            target="_blank"
+          >
+            🚶길찾기
+          </a>
           <div className="explain">{rest.explain}</div>
-          <div className="menuTitle">메뉴</div>
-          {menu.map((m) => {
-            let s = getSaleById(sale, m.id);
-            if (s)
-              return (
-                <div key={m.id} className="menus">
-                  {m.menu_name} {m.menu_price} 세일가: {s.sale_price}
-                </div>
-              );
-            else
-              return (
-                <div key={m.id} className="menus">
-                  {m.menu_name} {m.menu_price}
-                </div>
-              );
-          })}
+          <span className="type">#{rest.type} </span>
+          <span className="locType">#{rest.location_type}</span>
+
+          <div className="menuBox">
+            <div className="menuTitle">MENU</div>
+            {menu.map((m) => {
+              let s = getSaleById(sale, m.id);
+              if (s)
+                return (
+                  <div key={m.id} className="menus">
+                    <span className="menu">{m.menu_name}</span>{" "}
+                    <span className="price">
+                      <span className="line">{m.menu_price} </span>{" "}
+                      {s.sale_price}
+                    </span>
+                  </div>
+                );
+              else
+                return (
+                  <div key={m.id} className="menus">
+                    <span className="menu">{m.menu_name}</span>{" "}
+                    <span className="price"> {m.menu_price}</span>
+                  </div>
+                );
+            })}
+          </div>
         </>
       )}
     </DetailContainer>

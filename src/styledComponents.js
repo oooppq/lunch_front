@@ -13,12 +13,15 @@ export const Wrap = styled.div`
   width: 100%;
   align-items: center;
   padding-bottom: 100px;
+  margin: auto;
+  border: 13px solid #ffe8c6;
 
   @media only screen and (min-width: 400px) {
-    width: 400px;
+    width: 398px;
     margin: 0 auto;
     left: 0;
     right: 0;
+    height: 100%;
   }
 
   .loading {
@@ -53,7 +56,7 @@ export const NavUl = styled.ul`
   bottom: 0;
   width: 100%;
   z-index: 9999;
-  background-color: white;
+  background-color: #ffe8c6;
   list-style: none;
   display: flex;
   justify-content: center;
@@ -91,11 +94,27 @@ export const HomeContainer = styled.div`
 `;
 
 export const RecommContainer = styled.div`
-  width: 100%;
-  height: 500px;
+  width: 90%;
+  height: 460px;
+
+  margin: 20px auto;
+  position: relative;
+  border-radius: 1%;
+  box-shadow: 0px 0px 5.5px lightgrey;
 `;
 
 export const RecommTitle = styled.div`
+  img {
+    padding: 8px;
+    width: 3%;
+  }
+  span {
+    color: white;
+  }
+  background-color: white;
+  position: absolute;
+  top: -17px;
+  left: 102px;
   font-size: 20px;
   font-weight: bolder;
   text-align: center;
@@ -128,24 +147,39 @@ export const SliderElem = styled.div`
   width: 100%;
   height: 10%;
   padding-top: 10px;
+  text-align: center;
+`;
+
+export const SliderMenu = styled.div`
+  padding-top: 10px;
+  font-size: 17px;
+  text-align: center;
+  font-weight: bolder;
+  img {
+    display: inline;
+    width: 2.5%;
+    padding: 6px;
+  }
 `;
 
 export const SliderElemImg = styled.img`
   width: 80% !important;
   margin: 0 auto !important;
-  border-radius: 10% !important;
-  border: 5px solid rgba(255, 232, 198, 0.8);
+  border-radius: 6% !important;
+  padding: 10px;
 `;
 
 export const SliderElemInfo = styled.div`
   width: 80% !important;
+
   margin: 0 auto !important;
-  .mName {
-    text-align: center;
-    font-weight: bolder;
+
+  .rgroup {
+    color: gray;
+    font-weight: 600;
   }
   .rName {
-    text-align: center;
+    padding-bottom: 5px;
   }
   line-height: 160%;
 `;
@@ -160,6 +194,7 @@ export const SaleTitle = styled.div`
   font-weight: bolder;
   text-align: center;
   span {
+    color: orange;
     text-emphasis-style: dot;
     text-emphasis-position: over left;
   }
@@ -172,13 +207,13 @@ export const SaleUl = styled.ul`
 
 export const SaleLi = styled.li`
   padding: 10px 0;
-  border-top: 1px solid grey;
+  border-top: 2px solid grey;
 
   img {
     width: 96%;
     height: 100%;
     margin-left: 10px;
-    border-radius: 10%;
+    border-radius: 5%;
   }
 `;
 export const SaleBox = styled.li`
@@ -188,6 +223,7 @@ export const SaleBox = styled.li`
 export const SaleLiLeft = styled.div`
   margin-left: 5px;
   font-size: 15px;
+  padding: 5px;
 
   .name {
     font-weight: bolder;
@@ -195,22 +231,27 @@ export const SaleLiLeft = styled.div`
   }
   .price {
     text-decoration: line-through;
+    color: red;
+  }
+  .salePrice {
+    font-weight: bolder;
   }
 `;
 export const SaleLiRight = styled.div`
-  div {
-    margin: 10px;
-    padding: 0;
-    background-color: rgba(255, 232, 198, 0.5);
-  }
   margin: 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
   span {
     margin: 0px 1.5px;
     padding: 0;
     text-align: center;
-    border: 3px solid rgba(166, 166, 166, 0.6);
+    border-bottom: 3px solid rgba(166, 166, 166, 0.6);
     font-size: 12px;
 
+    padding: 1px;
+  }
+  span:active {
     padding: 1px;
     border-radius: 3px;
   }
@@ -274,9 +315,7 @@ export const IndexContainer = styled.div`
   border-radius: 20px;
 `;
 export const MapChild = styled.div`
-  background: linear-gradient(to top, #ffe400 50%, transparent 50%);
-  display: inline;
-  //background: linear-gradient(to top,#FFB788 30%,transparent 50%);
+  background: linear-gradient(to top, #ffe400 30%, transparent 50%);
   display: inline;
 `;
 
@@ -288,9 +327,19 @@ export const LocationNavBar = styled.ul`
 `;
 
 export const LocationElement = styled.li`
-  div {
-    padding: 5px 5px;
-    margin: 0 6px;
+ div{ padding:  5px 5px;
+  margin: 0 6px;
+  border-top:3px solid white;
+  font-weight:bolder;
+ 
+  // background-color:rgba(224,0,0,0.8);
+  
+  
+ }
+ div:hover{
+  border-top:3px solid #FFE8C6;
+ 
+ }
 
     // background-color:rgba(255,232,198,0.8);
     border-radius: 50%;
@@ -300,21 +349,20 @@ export const LocationElement = styled.li`
   }
 `;
 
-export const RestaurantListDiv = styled.div``;
+export const RestaurantListDiv = styled.div`
+  height: 100%;
+`;
 export const RestaurantListDivChild = styled.div`
   padding-bottom: 10px;
   font-weight: bold;
-  padding-bottom: 10px;
-  font-weight: bold;
-  border-bottom: 1.5px solid gray;
+  border-bottom: 4px solid #ffe8c6;
 `;
 export const RestaurantElem = styled.div`
-  margin: 10px 5px;
-  width: 95%;
-  padding: 10px 0;
-  border-top: 3px solid rgba(255, 232, 198, 0.8);
+  margin: 15px 5px;
+  width: 90%;
+  padding: 10px;
   box-shadow: 0 0 20px lightgray;
-  border-radius: 5%;
+  border-radius: 3%;
 `;
 export const RestaurantElement = styled.div`
   display: grid;
@@ -325,27 +373,21 @@ export const RestaurantElemLeft = styled.div`
   // margin-right: auto;
 `;
 export const RestaurantElemRight = styled.div`
-  div {
-    margin: 10px;
-    padding: 0;
-    background-color: rgba(255, 232, 198, 0.5);
-margin-left:60px;
-span{
-    margin:3px;
-    padding:0;
-    text-align:center;
-    border:2px solid rgba(166,166,166,0.9);
-    font-size:13px;
-    padding:1px;
-    border-radius:3px;
-  
-  }
-  span:active{
-    background-color:rgba(166,166,166,0.9);
-   
-  }
+  margin: 3px 15px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  span {
+    margin: 0px 1px;
+    text-align: center;
+    border-bottom: 3px solid rgba(166, 166, 166, 0.6);
+    font-size: 13px;
 
-
+    padding: 1.5px;
+  }
+  span:active {
+    background-color: rgba(166, 166, 166, 0.6);
+  }
 `;
 
 export const RestaurantImg = styled.img`
@@ -353,10 +395,20 @@ export const RestaurantImg = styled.img`
   width: 100%;
   margin-right: 10px;
 
-  border-radius: 10%;
+  border-radius: 2%;
 `;
 export const RestaurantInfo = styled.div`
   line-height: 160%;
+  padding-left: 10px;
+  padding-top: 7px;
+
+  .name {
+    font-weight: bolder;
+  }
+  span {
+    color: grey;
+    font-weight: 600;
+  }
 `;
 
 export const MapInfo = styled.div`
@@ -451,14 +503,60 @@ export const ModalContainer = styled.div`
 
 export const DetailContainer = styled.div`
   text-align: center;
-  div {
-    padding: 3px;
-  }
+  padding: auto;
+  margin: auto;
+
   img {
+    margin: 8px;
     width: 350px;
+    border-radius: 3%;
   }
+  .mapLink {
+    margin-left: 240px;
+  }
+  .menus {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .menu {
+    justify-self: end;
+    padding: 0 5px;
+  }
+
   .restName {
+    margin: 2px;
+    text-decoration: overline;
     font-weight: bolder;
+    font-size: 17px;
+  }
+  .explain {
+    padding: 10px 0;
+    width: 80%;
+    margin: auto;
+  }
+  .menuBox {
+    margin: auto;
+    width: 80%;
+    margin-top: 20px;
+    height: 200px;
+  }
+  .menuTitle {
+    border-bottom: 2px solid black;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-decoration: overline;
+    padding-bottom: 5px;
+
+    margin-bottom: 5px;
+  }
+  .line {
+    text-decoration: line-through;
+    color: red;
+    margin-right: 2px;
+  }
+  .price {
+    justify-self: start;
+    padding: 0 5px;
   }
 `;
 

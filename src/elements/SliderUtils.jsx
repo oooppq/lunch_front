@@ -3,11 +3,13 @@ import "slick-carousel/slick/slick-theme.css";
 import {
   StyledSlider,
   SliderElem,
+  SliderMenu,
   SliderElemImg,
   SliderElemInfo,
 } from "../styledComponents";
-import imgtwo from "../img/recom/2.png";
-
+import imgtwo from "../img/recom/1.png";
+import left from "../img/left.png";
+import right from "../img/right.png";
 import loadingIcon from "../img/loading.svg";
 import { getRestaurantById } from "../utils/findData";
 import { useNavigate } from "react-router-dom";
@@ -55,12 +57,17 @@ export const SliderElemMaker = (restaurant, menu, navigate) => {
 
   return (
     <SliderElem id={restaurant.id} key={menu.id} onClick={gotoDetailOnClick}>
+      <SliderMenu> <img src={left} />{menu.menu_name}<img src={right} /></SliderMenu>
       <SliderElemImg src={imgtwo}></SliderElemImg>
       <SliderElemInfo>
-        <div className="mName">{menu.menu_name}</div>
-        <div className="rName">{restaurant.store_name}</div>
-        <div className="rName">가격: {menu.menu_price}원</div>
-        <div className="rName">"{restaurant.explain}"</div>
+
+        <div className="rName">{restaurant.explain}</div>
+
+        <div className="rgroup">
+          <span className="rName">#{restaurant.store_name} </span>
+          <span className="rName">#가격 #{menu.menu_price}원</span>
+        </div>
+
       </SliderElemInfo>
     </SliderElem>
   );

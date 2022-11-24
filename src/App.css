@@ -18,7 +18,16 @@
   font-family: "S-CoreDream-3Light";
 }
 
+/* body {
+  margin: auto;
+  width: 398px;
+  height: 100%;
+  border: 15px solid #FFE8C6;
+} */
+
 .App {
+  border: 2px solid red;
+
   text-align: center;
 }
 
