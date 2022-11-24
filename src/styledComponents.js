@@ -15,7 +15,7 @@ export const Wrap = styled.div`
   align-items: center;
   padding-bottom: 100px;
   margin: auto;
-  border: 15px solid #ffe8c6;
+  // border-top: 15px solid #ffe8c6;
 
   @media only screen and (min-width: 400px) {
     width: 398px;
@@ -36,6 +36,9 @@ export const HeaderDiv = styled.div`
 
   height: 90px;
   padding: 10px 0;
+  background-color: #ffe8c6;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   img {
     height: 50px;
     padding: 20px;
@@ -96,7 +99,7 @@ export const HomeContainer = styled.div`
 
 export const RecommContainer = styled.div`
   width: 90%;
-  height: 460px;
+  height: 480px;
 
   margin: 20px auto;
   position: relative;
@@ -123,6 +126,7 @@ export const RecommTitle = styled.div`
 `;
 
 export const StyledSlider = styled(Slider)`
+  margin-top: 10px;
   .slick-list {
     width: 100%;
   }

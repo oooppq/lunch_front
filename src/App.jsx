@@ -17,63 +17,14 @@ import "./App.css";
 import { loginApi } from "./utils/api";
 import axios from "axios";
 
-const initialState = {
-  authenticated: false,
-  token: null,
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "SET_TOKEN":
-      return { ...state, token: action.token, authenticated: action.result };
-    default:
-      return state;
-  }
-};
-
 const App = () => {
   const [options, setOptions] = useState([]);
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const { authenticated } = state;
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("token") != null);
 
-  function handleLogin(id, pw) {
-    let token = loginApi(id, pw);
-    console.log(token);
-    // console.log("local: ", localStorage.getItem("Authorization"));
-    // if (token) {
-    //   console.log("로그인 성공!");
-    //   dispatch({
-    //     type: "SET_TOKEN",
-    //     token: token,
-    //     result: true,
-    //   });
-    //   return true;
-    // } else {
-    //   console.log("로그인 실패");
-    //   dispatch({
-    //     type: "SET_TOKEN",
-    //     token: null,
-    //     result: false,
-    //   });
-    //   return null;
-    // }
-  }
   useEffect(() => {
     if (localStorage.getItem("token")) {
       let token = JSON.parse(localStorage.getItem("token"))["access"];
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-      // console.log(axios.defaults.headers.common["Authorization"]);
-      dispatch({
-        type: "SET_TOKEN",
-        token: token,
-        result: true,
-      });
-    } else {
-      dispatch({
-        type: "SET_TOKEN",
-        token: null,
-        result: false,
-      });
     }
   }, []);
 
@@ -94,7 +45,7 @@ const App = () => {
           ></Route>
           <Route
             path="/accounts"
-            element={<Accounts handleLogin={handleLogin} />}
+            element={<Accounts isAuth={isAuth} setIsAuth={setIsAuth} />}
           ></Route>
         </Routes>
         <Nav></Nav>
