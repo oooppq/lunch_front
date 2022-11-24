@@ -17,6 +17,7 @@ import loadingIcon from "../img/loading.svg";
 import imag from "../img/recom/3.png";
 import left from "../img/left.png";
 import right from "../img/right.png";
+import noImage from "../img/no-image.png";
 
 import { getMenuById, getRestaurantById } from "../utils/findData";
 import { useNavigate } from "react-router-dom";
@@ -76,7 +77,7 @@ const Home = () => {
               return (
                 <SaleLi key={s.id}>
                   <img
-                    src={m.menu_image}
+                    src={m.menu_image ? m.menu_image : noImage}
                     alt=""
                     id={restaurant.id}
                     onClick={gotoDetailOnClick}

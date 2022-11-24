@@ -42,3 +42,25 @@ export const loginApi = async (id, pw) => {
   localStorage.setItem("token", JSON.stringify(res.data.token));
   // return res.data.token;
 };
+
+export const addMyStore = async (e) => {
+  let name = e.currentTarget.id;
+  const url = baseUrl + "accounts/mystore/";
+  const data = JSON.stringify({ store_name: name });
+  await axios.post(url, data, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+export const addMyMenu = async (e) => {
+  let name = e.currentTarget.id;
+  const url = baseUrl + "accounts/mymenu/";
+  const data = JSON.stringify({ menu_name: name });
+  await axios.post(url, data, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};

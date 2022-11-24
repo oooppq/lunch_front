@@ -12,7 +12,12 @@ const KakaoMap = (props) => {
   });
   const [level, setLevel] = useState(5);
   const locs = document.querySelectorAll(".loc");
-
+  const cookieSet = () => {
+    document.cookie = "safeCookie1=foo; SameSite=Lax";
+    document.cookie = "safeCookie2=foo";
+    document.cookie = "crossCookie=bar; SameSite=None; Secure";
+  };
+  cookieSet();
   for (let l of locs) {
     l.addEventListener("click", (e) => {
       if (l.innerHTML == "정문") {
@@ -21,6 +26,7 @@ const KakaoMap = (props) => {
           lng: 126.9373731,
         });
         setLevel(3);
+        cookieSet();
       }
       if (l.innerHTML == "남문") {
         setLoc({
@@ -28,6 +34,7 @@ const KakaoMap = (props) => {
           lng: 126.9390893,
         });
         setLevel(4);
+        cookieSet();
       }
       if (l.innerHTML == "후문") {
         setLoc({
@@ -35,6 +42,7 @@ const KakaoMap = (props) => {
           lng: 126.9438919,
         });
         setLevel(3);
+        cookieSet();
       }
       if (l.innerHTML == "신촌") {
         setLoc({
@@ -49,6 +57,7 @@ const KakaoMap = (props) => {
           lng: 126.942467,
         });
         setLevel(3);
+        cookieSet();
       }
       if (l.innerHTML == "공덕") {
         setLoc({
@@ -56,6 +65,7 @@ const KakaoMap = (props) => {
           lng: 126.9507534,
         });
         setLevel(3);
+        cookieSet();
       }
     });
   }

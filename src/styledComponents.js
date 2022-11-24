@@ -129,7 +129,7 @@ export const RecommTitle = styled.div`
 `;
 
 export const StyledSlider = styled(Slider)`
-  margin-top: 10px;
+  margin-top: 20px;
   .slick-list {
     width: 100%;
   }
@@ -160,7 +160,7 @@ export const SliderElem = styled.div`
 `;
 
 export const SliderMenu = styled.div`
-  padding-top: 10px;
+  padding-top: 20px;
   font-size: 17px;
   text-align: center;
   font-weight: bolder;
@@ -172,9 +172,10 @@ export const SliderMenu = styled.div`
 `;
 
 export const SliderElemImg = styled.img`
-  width: 80% !important;
+  width: 90% !important;
   margin: 0 auto !important;
   border-radius: 6% !important;
+  height: 300px;
   padding: 10px;
 `;
 
@@ -514,45 +515,97 @@ export const DetailContainer = styled.div`
   text-align: center;
   padding: auto;
   margin: auto;
-
   img {
     margin: 8px;
     width: 350px;
     border-radius: 3%;
   }
+  .rest-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .type,
+    .locType {
+      width: 150px;
+      text-align: left;
+      display: flex;
+      margin-bottom: 10px;
+      .left {
+        font-weight: bolder;
+        margin-right: 10px;
+      }
+    }
+  }
   .mapLink {
-    margin-left: 240px;
+    margin-left: 10px;
+    text-decoration: none;
+    img {
+      height: 15px;
+      width: 15px;
+      margin: 0;
+    }
   }
   .menus {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    display: flex;
+  }
+  .menu-img {
+    height: 70px;
+    width: 70px;
+  }
+  .menu-info {
+    padding: 10px 5px;
+    text-align: left;
+    margin-right: auto;
+  }
+  .menu-extra {
+    padding-top: 10px;
+    div {
+      margin: 0px 1px;
+      margin-bottom: 10px;
+      text-align: center;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: bolder;
+      background-color: #ffb74d;
+      // padding: 1.5px;
+      padding: 3px 5px;
+    }
+    div:active {
+      background-color: orange;
+    }
   }
   .menu {
-    justify-self: end;
-    padding: 0 5px;
+    font-size: 20px;
+    font-weight: bold;
   }
 
   .restName {
     margin: 2px;
-    text-decoration: overline;
+    // text-decoration: overline;
     font-weight: bolder;
-    font-size: 17px;
+    font-size: 23px;
   }
   .explain {
     padding: 10px 0;
     width: 80%;
     margin: auto;
+    font-weight: bolder;
+    // border-bottom: 1px solid grey;
+    margin-bottom: 10px;
   }
   .menuBox {
     margin: auto;
     width: 80%;
     margin-top: 20px;
-    height: 200px;
+    margin-bottom: 50px;
   }
   .menuTitle {
     border-bottom: 2px solid black;
     letter-spacing: 2px;
-    font-weight: 600;
+    font-size: 25px;
+    font-weight: bolder;
     text-decoration: overline;
     padding-bottom: 5px;
 
@@ -564,8 +617,9 @@ export const DetailContainer = styled.div`
     margin-right: 2px;
   }
   .price {
-    justify-self: start;
-    padding: 0 5px;
+    // justify-self: start;
+    padding-right: 5px;
+    margin-top: 10px;
   }
 `;
 
@@ -598,10 +652,12 @@ export const AuthenticatedDiv = styled.div`
   .auth-head {
     height: 50px;
     display: flex;
+    margin-bottom: 10px;
     .user-greeting {
       text-align: left;
       font-size: 20px;
       margin-right: auto;
+      padding-top: 5px;
       span {
         font-size: 25px;
         font-weight: bolder;
@@ -612,12 +668,50 @@ export const AuthenticatedDiv = styled.div`
     }
   }
   .saved {
-    display: flex;
-    div {
-      width: 50%;
-      height: 30px;
-      border: 1px solid black;
-      border-right: 0.5px solid black;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    .saved-title {
+      display: flex;
+      border-bottom: 1px solid black;
+      font-size: 20px;
+      font-weight: bolder;
+      div {
+        width: 50%;
+        height: 30px;
+        padding-top: 10px;
+      }
+      #saved-store-title {
+        // border-right: 1px solid black;
+        background-color: #ffb74d;
+      }
+    }
+    .saved-elements {
+      display: flex;
+      flex-wrap: wrap;
+
+      width: 100%;
+
+      min-height: 400px;
+      .saved-elem {
+        margin: 20px 0;
+        width: 50%;
+        .img-outer {
+          position: relative;
+        }
+        img {
+          width: 100px;
+          height: 100px;
+        }
+        .close {
+          width: 25px;
+          height: 25px;
+          position: absolute;
+          transform: translate(-50%, -50%);
+          background-color: white;
+          border-radius: 50%;
+        }
+      }
     }
   }
 `;

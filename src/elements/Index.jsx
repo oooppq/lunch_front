@@ -24,6 +24,8 @@ import classnames from "classnames";
 import img from "../img/recom/2.png";
 // import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
+import { addMyStore, AddMyMenu } from "../utils/api";
+import noImage from "../img/no-image.png";
 
 const Index = (props) => {
   const [isMap, setMap] = useState(false);
@@ -58,7 +60,7 @@ const Index = (props) => {
         className={classnames("restElem", param.location_type)}
       >
         <RestaurantImg
-          src={img}
+          src={param.store_image ? param.store_image : noImage}
           id={param.id}
           onClick={restOnClick}
         ></RestaurantImg>
@@ -71,7 +73,16 @@ const Index = (props) => {
             </RestaurantInfo>
           </RestaurantElemLeft>
           <RestaurantElemRight>
-            <span>찜하기</span>
+            <span
+              id={param.store_name}
+              onClick={(e) => {
+                if (props.isAuth) {
+                  addMyStore(e);
+                } else navigate("/accounts");
+              }}
+            >
+              찜하기
+            </span>
             <span
               onClick={() => {
                 props.setOptions((prev) => [...prev, param.store_name]);

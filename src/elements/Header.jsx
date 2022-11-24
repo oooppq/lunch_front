@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HeaderDiv } from "../styledComponents";
-import titleLogo from "../img/logo2.png";
+import titleLogo from "../img/logo.png";
 import optionsLogo from "../img/options.png";
 import accountsLogo from "../img/accounts.png";
 const Header = (props) => {
@@ -15,9 +15,7 @@ const Header = (props) => {
   };
   return (
     <HeaderDiv className="title" onClick={headerOnClick}>
-
       <img id="logo" src={titleLogo} alt="" />
-
     </HeaderDiv>
   );
 };

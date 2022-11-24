@@ -25,9 +25,12 @@ const App = () => {
     if (localStorage.getItem("token")) {
       let token = JSON.parse(localStorage.getItem("token"))["access"];
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+      setIsAuth(true);
     }
+    document.cookie = "safeCookie1=foo; SameSite=Lax";
+    document.cookie = "safeCookie2=foo";
+    document.cookie = "crossCookie=bar; SameSite=None; Secure";
   }, []);
-
   return (
     <Wrap>
       <Router>
@@ -36,9 +39,9 @@ const App = () => {
           <Route path="/" element={<Home />}></Route>
           <Route
             path="/index"
-            element={<Index setOptions={setOptions} />}
+            element={<Index setOptions={setOptions} isAuth={isAuth} />}
           ></Route>
-          <Route path="/index/:id" element={<Detail />}></Route>
+          <Route path="/index/:id" element={<Detail isAuth={isAuth} />}></Route>
           <Route
             path="/roulette"
             element={<Roulette options={options} />}

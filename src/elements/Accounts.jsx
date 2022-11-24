@@ -11,6 +11,8 @@ import {
 } from "../styledComponents";
 import { useNavigate } from "react-router-dom";
 import logoutIcon from "../img/logout.png";
+import closeIcon from "../img/close.png";
+import noImage from "../img/no-image.png";
 
 const Accounts = (props) => {
   const [join, setJoin] = useState(false);
@@ -23,6 +25,7 @@ const Accounts = (props) => {
   const [loginFail, setLoginFail] = useState(false);
   const [registerFail, setRegisterFail] = useState(false);
   const [isStoreSave, setIsStoreSave] = useState(true);
+
   const isAuth = props.isAuth;
   const setIsAuth = props.setIsAuth;
   const navigate = useNavigate();
@@ -93,14 +96,55 @@ const Accounts = (props) => {
     }
   };
 
-  const addStore = async () => {
-    const url = baseUrl + "accounts/mymenu/";
-    const data = JSON.stringify({ menu_name: "명란크림우동" });
-    await axios.post(url, data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  const deleteStore = async (e) => {
+    let name = e.currentTarget.id;
+    const url = baseUrl + "accounts/delete-mystore/";
+    const data = JSON.stringify({ store_name: name });
+    try {
+      await axios.post(url, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setMyStore(myStore.filter((store) => store.store_name != name));
+    } catch (e) {}
+  };
+
+  const deleteMenu = async (e) => {
+    let name = e.currentTarget.id;
+    const url = baseUrl + "accounts/delete-mymenu/";
+    const data = JSON.stringify({ menu_name: name });
+    try {
+      await axios.post(url, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setMyMenu(myMenu.filter((menu) => menu.menu_name != name));
+    } catch (e) {}
+  };
+  const savedOnClick = (e) => {
+    if (e.target.id == "saved-store-title") {
+      setIsStoreSave(true);
+      e.target.style.backgroundColor = "#ffb74d";
+      document.querySelector("#saved-menu-title").style.backgroundColor =
+        "white";
+    } else {
+      setIsStoreSave(false);
+      e.target.style.backgroundColor = "#ffb74d";
+      document.querySelector("#saved-store-title").style.backgroundColor =
+        "white";
+    }
+    // let stores = document.querySelectorAll(".saved-store-elem");
+    // let menus = document.querySelectorAll(".saved-menu-elem");
+    // for (let store of stores) {
+    //   if (e.target.id == "saved-store-title") store.style.display = "block";
+    //   else store.style.display = "none";
+    // }
+    // for (let menu of menus) {
+    //   if (e.target.id == "saved-menu-title") menu.style.display = "block";
+    //   else menu.style.display = "none";
+    // }
   };
 
   useEffect(() => {
@@ -109,7 +153,7 @@ const Accounts = (props) => {
     if (isAuth) {
       axios.defaults.headers.common["Authorization"] =
         "bearer " + JSON.parse(localStorage.getItem("token")).access;
-      // getData(setMyStore, setLoading, url);
+
       getMultiData([setMyMenu, setMyStore], setLoading, [menuUrl, storeUrl]);
     }
   }, []);
@@ -129,29 +173,69 @@ const Accounts = (props) => {
                 <span className="user-id">{localStorage.getItem("id")}</span>{" "}
                 님!
               </div>
+
               <img src={logoutIcon} alt="" onClick={logoutOnClick} />
             </div>
             <div className="saved">
-              <div className="saved-store-title">가게찜</div>
-              <div className="saved-menu-title">메뉴찜</div>
+              <div className="saved-title" onClick={savedOnClick}>
+                <div id="saved-store-title">찜한가게</div>
+                <div id="saved-menu-title">찜한메뉴</div>
+              </div>
+              <div className="saved-elements">
+                {myStore.map((store) => {
+                  if (isStoreSave) {
+                    let imgSrc = "http://127.0.0.1:8000" + store.store_image;
+                    return (
+                      <div
+                        className="saved-store-elem saved-elem"
+                        key={store.id}
+                        onClick={() => {
+                          navigate("/index/" + store.id);
+                        }}
+                      >
+                        <div className="img-outer">
+                          <img src={imgSrc ? imgSrc : noImage} alt="" />
+                          <img
+                            id={store.store_name}
+                            className="close"
+                            src={closeIcon}
+                            alt=""
+                            onClick={deleteStore}
+                          />
+                        </div>
+                        <div>{store.store_name}</div>
+                      </div>
+                    );
+                  }
+                })}
+                {myMenu.map((menu) => {
+                  if (!isStoreSave) {
+                    let imgSrc = "http://127.0.0.1:8000" + menu.menu_image;
+                    return (
+                      <div
+                        className="saved-menu-elem saved-elem"
+                        key={menu.id}
+                        onClick={() => {
+                          navigate("/index/" + menu.restaurant);
+                        }}
+                      >
+                        <div className="img-outer">
+                          <img src={imgSrc ? imgSrc : noImage} alt="" />
+                          <img
+                            id={menu.menu_name}
+                            className="close"
+                            src={closeIcon}
+                            alt=""
+                            onClick={deleteMenu}
+                          />
+                        </div>
+                        <div>{menu.menu_name}</div>
+                      </div>
+                    );
+                  }
+                })}
+              </div>
             </div>
-
-            {myStore.map((store) => {
-              return (
-                <div className="saved-store-elem" key={store.id}>
-                  {store.store_name}
-                </div>
-              );
-            })}
-            {myMenu.map((menu) => {
-              return (
-                <div className="saved-store-elem" key={menu.id}>
-                  {menu.menu_name}
-                </div>
-              );
-            })}
-
-            <div onClick={addStore}>test add button</div>
           </AuthenticatedDiv>
         )
       ) : join ? (

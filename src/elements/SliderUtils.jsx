@@ -13,6 +13,8 @@ import right from "../img/right.png";
 import loadingIcon from "../img/loading.svg";
 import { getRestaurantById } from "../utils/findData";
 import { useNavigate } from "react-router-dom";
+import noImage from "../img/no-image.png";
+import { useEffect, useState } from "react";
 
 export const HomeSlider = (props) => {
   const settings = {
@@ -28,6 +30,19 @@ export const HomeSlider = (props) => {
     pauseOnHover: true,
   };
   const navigate = useNavigate();
+  const menuToRecom = [4, 12, 27, 38, 214];
+
+  // const [menu, setMenu] = useState(props.menu);
+
+  // useEffect(() => {
+  //   console.log(menu);
+  //   let tmp = [];
+  //   while (tmp.lenth < 2) {
+  //     let i = Math.random() % menu.length;
+  //     if (!(menu[i] in tmp)) tmp.push(menu[i]);
+  //   }
+  //   setMenu(tmp);
+  // }, []);
 
   return (
     <div>
@@ -37,12 +52,14 @@ export const HomeSlider = (props) => {
         </div>
       ) : (
         <StyledSlider {...settings} height="100%;">
-          {props.menu.map((menu) => {
-            let restaurant = getRestaurantById(
-              props.restaurant,
-              menu.restaurant
-            );
-            return SliderElemMaker(restaurant, menu, navigate);
+          {props.menu.map((m) => {
+            if (m.id in menuToRecom) {
+              let restaurant = getRestaurantById(
+                props.restaurant,
+                m.restaurant
+              );
+              return SliderElemMaker(restaurant, m, navigate);
+            }
           })}
         </StyledSlider>
       )}
@@ -64,7 +81,9 @@ export const SliderElemMaker = (restaurant, menu, navigate) => {
         {menu.menu_name}
         <img src={right} />
       </SliderMenu>
-      <SliderElemImg src={menu.menu_image}></SliderElemImg>
+      <SliderElemImg
+        src={menu.menu_image ? menu.menu_image : noImage}
+      ></SliderElemImg>
       <SliderElemInfo>
         <div className="rName">{restaurant.explain}</div>
 

@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getMultiData } from "../utils/api";
 import { getSaleById } from "../utils/findData";
 import { DetailContainer } from "../styledComponents";
 import loadingIcon from "../img/loading.svg";
 import { baseUrl } from "../data";
+import { addMyMenu } from "../utils/api";
 
 import img from "../img/recom/3.png";
+import noImage from "../img/no-image.png";
+import locImage from "../img/location.png";
 
-const Detail = () => {
+const Detail = (props) => {
   const { id } = useParams();
   const [rest, setRest] = useState(null);
   const [menu, setMenu] = useState(null);
   const [sale, setSale] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const mapLink = "https://map.kakao.com/link/to/"; // 길찾기 링크
 
@@ -29,6 +33,9 @@ const Detail = () => {
     ]);
   }, []);
 
+  // const saveOnClick = (e) => {
+
+  // }
   return (
     <DetailContainer>
       {loading ? (
@@ -36,26 +43,37 @@ const Detail = () => {
           <img src={loadingIcon} alt="" />
         </div>
       ) : (
-        <>
+        <div>
           <div className="restName">{rest.store_name}</div>
-          <img src={img} />
-          <a
-            className="mapLink"
-            href={
-              mapLink +
-              rest.store_name +
-              "," +
-              rest.latitude +
-              "," +
-              rest.longitude
-            }
-            target="_blank"
-          >
-            🚶길찾기
-          </a>
-          <div className="explain">{rest.explain}</div>
-          <span className="type">#{rest.type} </span>
-          <span className="locType">#{rest.location_type}</span>
+          <img src={rest.store_image ? rest.store_image : noImage} />
+
+          <div className="explain">"{rest.explain}"</div>
+          <div className="rest-info">
+            <div className="type">
+              <div className="left">카테고리:</div>
+              <div>{rest.type}</div>
+            </div>
+
+            <div className="locType">
+              <div className="left">위치:</div>
+              <div>{rest.location_type}</div>
+              <a
+                className="mapLink"
+                href={
+                  mapLink +
+                  rest.store_name +
+                  "," +
+                  rest.latitude +
+                  "," +
+                  rest.longitude
+                }
+                target="_blank"
+              >
+                <img src={locImage} alt="" />
+                길찾기
+              </a>
+            </div>
+          </div>
 
           <div className="menuBox">
             <div className="menuTitle">MENU</div>
@@ -64,23 +82,55 @@ const Detail = () => {
               if (s)
                 return (
                   <div key={m.id} className="menus">
-                    <span className="menu">{m.menu_name}</span>{" "}
-                    <span className="price">
-                      <span className="line">{m.menu_price} </span>{" "}
-                      {s.sale_price}
-                    </span>
+                    <img src={m.menu_image} alt="" className="menu-img" />
+                    <div className="menu-info">
+                      <div className="menu">{m.menu_name}</div>
+                      <span className="price">
+                        <span className="line">{m.menu_price} </span>
+                        {s.sale_price}
+                      </span>
+                    </div>
+                    <div className="menu-extra">
+                      <div
+                        onClick={(e) => {
+                          if (props.isAuth) {
+                            addMyMenu(e);
+                          } else navigate("/accounts");
+                        }}
+                      >
+                        찜하기
+                      </div>
+                      <div>룰렛에 추가</div>
+                    </div>
                   </div>
                 );
               else
                 return (
                   <div key={m.id} className="menus">
-                    <span className="menu">{m.menu_name}</span>{" "}
-                    <span className="price"> {m.menu_price}</span>
+                    <img src={m.menu_image} alt="" className="menu-img" />
+                    <div className="menu-info">
+                      <div className="menu">{m.menu_name}</div>
+                      <br />
+                      <span className="price"> {m.menu_price}</span>
+                    </div>
+                    <div className="menu-extra">
+                      <div
+                        id={m.menu_name}
+                        onClick={(e) => {
+                          if (props.isAuth) {
+                            addMyMenu(e);
+                          } else navigate("/accounts");
+                        }}
+                      >
+                        찜하기
+                      </div>
+                      <div>룰렛에 추가</div>
+                    </div>
                   </div>
                 );
             })}
           </div>
-        </>
+        </div>
       )}
     </DetailContainer>
   );
