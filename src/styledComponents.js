@@ -12,7 +12,6 @@ export const Wrap = styled.div`
   box-sizing: border-box;
   align-items: center;
   width: 100%;
-  align-items: center;
   padding-bottom: 100px;
   margin: auto;
   // border-top: 15px solid #ffe8c6;
@@ -39,10 +38,13 @@ export const HeaderDiv = styled.div`
   background-color: #ffe8c6;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+
+  margin-bottom: 20px;
   img {
     height: 50px;
     padding: 20px;
   }
+
   #logo {
     height: 100%;
     margin: 0 auto;
@@ -101,7 +103,7 @@ export const RecommContainer = styled.div`
   width: 90%;
   height: 480px;
 
-  margin: 20px auto;
+  margin: 30px auto;
   position: relative;
   border-radius: 1%;
   box-shadow: 0px 0px 5.5px lightgrey;
@@ -118,8 +120,9 @@ export const RecommTitle = styled.div`
   background-color: white;
   position: absolute;
 
-  top: -17px;
-  left: 82px;
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 20px;
   font-weight: bolder;
   text-align: center;
@@ -302,7 +305,7 @@ export const RouletteContainer = styled.div`
     content: "";
     position: absolute;
     left: 50%;
-    top: -10px;
+    top: -15px;
     margin-left: -25px;
     width: 0;
     height: 0;
@@ -566,10 +569,75 @@ export const DetailContainer = styled.div`
   }
 `;
 
-export const AccountsContainer = styled.div``;
+export const AccountsContainer = styled.div`
+  text-align: center;
+  width: 80%;
+  margin: 20px auto;
+  input {
+    border: 0;
+    border-bottom: 1px solid grey;
+    width: 100%;
+    height: 30px;
+    margin: 10px 0;
+  }
+  button {
+    width: 100%;
+    height: 40px;
 
-export const AuthenticatedDiv = styled.div``;
+    font-size: 20px;
+    font-weight: bolder;
+    border: 0;
+    border-radius: 5px;
+    background-color: #ffb74d;
+  }
+`;
 
-export const LoginDiv = styled.div``;
+export const AuthenticatedDiv = styled.div`
+  width: 100%;
 
-export const JoinDiv = styled.div``;
+  .auth-head {
+    height: 50px;
+    display: flex;
+    .user-greeting {
+      text-align: left;
+      font-size: 20px;
+      margin-right: auto;
+      span {
+        font-size: 25px;
+        font-weight: bolder;
+      }
+    }
+    img {
+      height: 36px;
+    }
+  }
+  .saved {
+    display: flex;
+    div {
+      width: 50%;
+      height: 30px;
+      border: 1px solid black;
+      border-right: 0.5px solid black;
+    }
+  }
+`;
+
+export const LoginDiv = styled.div`
+  witdh: 100%;
+  .login-title {
+    font-size: 40px;
+    font-weight: bolder;
+  }
+
+  .goto-register {
+    margin-top: 15px;
+  }
+`;
+
+export const JoinDiv = styled.div`
+  witdh: 100%;
+  .register-title {
+    font-size: 40px;
+    font-weight: bolder;
+  }
+`;

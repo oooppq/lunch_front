@@ -10,6 +10,7 @@ import {
   JoinDiv,
 } from "../styledComponents";
 import { useNavigate } from "react-router-dom";
+import logoutIcon from "../img/logout.png";
 
 const Accounts = (props) => {
   const [join, setJoin] = useState(false);
@@ -19,11 +20,11 @@ const Accounts = (props) => {
   const [myStore, setMyStore] = useState(null);
   const [myMenu, setMyMenu] = useState(null);
   const [loading, setLoading] = useState(true);
-  // const [isAuth, setIsAuth] = useState(localStorage.getItem("token") != null);
-  const isAuth = props.isAuth;
-  const setIsAuth = props.setIsAuth;
   const [loginFail, setLoginFail] = useState(false);
   const [registerFail, setRegisterFail] = useState(false);
+  const [isStoreSave, setIsStoreSave] = useState(true);
+  const isAuth = props.isAuth;
+  const setIsAuth = props.setIsAuth;
   const navigate = useNavigate();
 
   const loginOnClick = async () => {
@@ -122,75 +123,103 @@ const Accounts = (props) => {
           </div>
         ) : (
           <AuthenticatedDiv>
-            <div>
-              안녕하세요! <span>{localStorage.getItem("id")}</span> 님
+            <div className="auth-head">
+              <div className="user-greeting">
+                안녕하세요{" "}
+                <span className="user-id">{localStorage.getItem("id")}</span>{" "}
+                님!
+              </div>
+              <img src={logoutIcon} alt="" onClick={logoutOnClick} />
             </div>
-            <div>찜목록</div>
-            <div>
-              가게찜
-              {myStore.map((store) => {
-                return <div key={store.id}>{store.store_name}</div>;
-              })}
+            <div className="saved">
+              <div className="saved-store-title">가게찜</div>
+              <div className="saved-menu-title">메뉴찜</div>
             </div>
-            <div>
-              메뉴찜
-              {myMenu.map((menu) => {
-                return <div key={menu.id}>{menu.menu_name}</div>;
-              })}
-            </div>
-            <div onClick={logoutOnClick}>test logout</div>
+
+            {myStore.map((store) => {
+              return (
+                <div className="saved-store-elem" key={store.id}>
+                  {store.store_name}
+                </div>
+              );
+            })}
+            {myMenu.map((menu) => {
+              return (
+                <div className="saved-store-elem" key={menu.id}>
+                  {menu.menu_name}
+                </div>
+              );
+            })}
+
             <div onClick={addStore}>test add button</div>
           </AuthenticatedDiv>
         )
       ) : join ? (
         <JoinDiv>
-          <div>회원가입</div>
+          <div className="register-title">회원가입</div>
           <input
+            className="id"
             type="text"
             onChange={(e) => {
               setId(e.target.value);
             }}
-          />{" "}
+            placeholder="아이디"
+          />
           <br />
           <input
+            className="pw"
             type="password"
             onChange={(e) => {
               setPw(e.target.value);
             }}
+            placeholder="비밀번호"
           />
           <br />
           <input
+            className="pw2"
             type="password"
             onChange={(e) => {
               setPw2(e.target.value);
             }}
+            placeholder="비밀번호 확인"
           />
-          <button onClick={registerOnClick}>회원가입</button>
+          <button className="submit" onClick={registerOnClick}>
+            회원가입
+          </button>
         </JoinDiv>
       ) : (
         <LoginDiv>
-          <div>로그인</div>
+          <div className="login-title">로그인</div>
           <input
+            className="id"
             type="text"
             onChange={(e) => {
               setId(e.target.value);
             }}
+            placeholder="아이디"
           />
+          <br />
           <input
+            className="pw"
             type="password"
             onChange={(e) => {
               setPw(e.target.value);
             }}
+            placeholder="비밀번호"
           />
-          <button onClick={loginOnClick}>로그인</button>
+          <br />
+          <button className="submit" onClick={loginOnClick}>
+            로그인
+          </button>
           <div
             onClick={() => {
               setJoin(true);
               setId("");
               setPw("");
             }}
+            className="goto-register"
           >
-            회원가입하기
+            간편 회원가입하기
           </div>
         </LoginDiv>
       )}
