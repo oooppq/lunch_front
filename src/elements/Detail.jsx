@@ -6,10 +6,12 @@ import { DetailContainer } from "../styledComponents";
 import loadingIcon from "../img/loading.svg";
 import { baseUrl } from "../data";
 import { addMyMenu } from "../utils/api";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 import img from "../img/recom/3.png";
 import noImage from "../img/no-image.png";
 import locImage from "../img/location.png";
+import shareIcon from "../img/share.png";
 
 const Detail = (props) => {
   const { id } = useParams();
@@ -43,7 +45,7 @@ const Detail = (props) => {
           <img src={loadingIcon} alt="" />
         </div>
       ) : (
-        <div>
+        <div className="detail">
           <div className="restName">{rest.store_name}</div>
           <img src={rest.store_image ? rest.store_image : noImage} />
 
@@ -73,6 +75,11 @@ const Detail = (props) => {
                 길찾기
               </a>
             </div>
+            <CopyToClipboard text={window.location.href}>
+              <button className="copy">
+                <img src={shareIcon} alt="" />
+              </button>
+            </CopyToClipboard>
           </div>
 
           <div className="menuBox">

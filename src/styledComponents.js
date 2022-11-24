@@ -27,6 +27,19 @@ export const Wrap = styled.div`
   .loading {
     text-align: center !important;
   }
+
+  .copy {
+    border: none;
+    background-color: white;
+    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    img {
+      height: 30px;
+      width: 30px;
+      margin: 0;
+    }
+  }
 `;
 
 /** Header components */
@@ -515,6 +528,8 @@ export const DetailContainer = styled.div`
   text-align: center;
   padding: auto;
   margin: auto;
+  .detail {
+  }
   img {
     margin: 8px;
     width: 350px;
