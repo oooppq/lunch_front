@@ -76,7 +76,7 @@ const Home = () => {
               return (
                 <SaleLi key={s.id}>
                   <img
-                    src={imag}
+                    src={m.menu_image}
                     alt=""
                     id={restaurant.id}
                     onClick={gotoDetailOnClick}

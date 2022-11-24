@@ -38,24 +38,25 @@ const App = () => {
 
   function handleLogin(id, pw) {
     let token = loginApi(id, pw);
-
-    if (token) {
-      console.log("로그인 성공!");
-      dispatch({
-        type: "SET_TOKEN",
-        token: token,
-        result: true,
-      });
-      return true;
-    } else {
-      console.log("로그인 실패");
-      dispatch({
-        type: "SET_TOKEN",
-        token: null,
-        result: false,
-      });
-      return null;
-    }
+    console.log(token);
+    // console.log("local: ", localStorage.getItem("Authorization"));
+    // if (token) {
+    //   console.log("로그인 성공!");
+    //   dispatch({
+    //     type: "SET_TOKEN",
+    //     token: token,
+    //     result: true,
+    //   });
+    //   return true;
+    // } else {
+    //   console.log("로그인 실패");
+    //   dispatch({
+    //     type: "SET_TOKEN",
+    //     token: null,
+    //     result: false,
+    //   });
+    //   return null;
+    // }
   }
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -68,7 +69,6 @@ const App = () => {
         result: true,
       });
     } else {
-      console.log("로그인 실패");
       dispatch({
         type: "SET_TOKEN",
         token: null,
@@ -94,7 +94,7 @@ const App = () => {
           ></Route>
           <Route
             path="/accounts"
-            element={<Accounts handleLogin={handleLogin} state={state} />}
+            element={<Accounts handleLogin={handleLogin} />}
           ></Route>
         </Routes>
         <Nav></Nav>

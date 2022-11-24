@@ -25,6 +25,7 @@ export const HomeSlider = (props) => {
     textAlign: "center",
     autoplay: true, //자동 재생 할 것인지
     autoplaySpeed: 3000,
+    pauseOnHover: true,
   };
   const navigate = useNavigate();
 
@@ -57,17 +58,20 @@ export const SliderElemMaker = (restaurant, menu, navigate) => {
 
   return (
     <SliderElem id={restaurant.id} key={menu.id} onClick={gotoDetailOnClick}>
-      <SliderMenu> <img src={left} />{menu.menu_name}<img src={right} /></SliderMenu>
-      <SliderElemImg src={imgtwo}></SliderElemImg>
+      <SliderMenu>
+        {" "}
+        <img src={left} />
+        {menu.menu_name}
+        <img src={right} />
+      </SliderMenu>
+      <SliderElemImg src={menu.menu_image}></SliderElemImg>
       <SliderElemInfo>
-
         <div className="rName">{restaurant.explain}</div>
 
         <div className="rgroup">
           <span className="rName">#{restaurant.store_name} </span>
-          <span className="rName">#가격 #{menu.menu_price}원</span>
+          <span className="rName">#가격 {menu.menu_price}원</span>
         </div>
-
       </SliderElemInfo>
     </SliderElem>
   );

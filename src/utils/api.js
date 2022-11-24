@@ -23,14 +23,22 @@ export const getMultiData = async (setters, setLoading, urls) => {
 export const loginApi = async (id, pw) => {
   const url = baseUrl + "accounts/login/";
   const data = JSON.stringify({ username: id, password: pw });
-  const res = await axios.post(url, data, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
 
+  const res = await axios
+    .post(url, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .catch((error) => {
+      // return error.response;
+      return Promise.reject(error);
+      // return null;
+    });
+  console.log(res.status);
+  if (!res.status) return null;
   axios.defaults.headers.common["Authorization"] =
     "Bearer " + res.data.token.access;
   localStorage.setItem("token", JSON.stringify(res.data.token));
-  return res.data.token;
+  // return res.data.token;
 };
