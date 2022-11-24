@@ -1,4 +1,5 @@
 import axios from "axios";
+import { baseUrl } from "../data";
 
 export const getData = async (setData, setLoading, url) => {
   if (setLoading) setLoading(true);
@@ -17,4 +18,21 @@ export const getMultiData = async (setters, setLoading, urls) => {
     i = i + 1;
   }
   if (setLoading) setLoading(false);
+};
+
+export const loginApi = async (id, pw) => {
+  const url = baseUrl + "accounts/login/";
+  const data = JSON.stringify({ username: id, password: pw });
+  const res = await axios.post(url, data, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  res.catch(() => {
+    console.log("on loading");
+  });
+  axios.defaults.headers.common["Authorization"] =
+    "Bearer " + res.data.token.access;
+  localStorage.setItem("token", JSON.stringify(res.data.token));
+  return res.data.token;
 };

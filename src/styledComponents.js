@@ -461,3 +461,11 @@ export const DetailContainer = styled.div`
     font-weight: bolder;
   }
 `;
+
+export const AccountsContainer = styled.div``;
+
+export const AuthenticatedDiv = styled.div``;
+
+export const LoginDiv = styled.div``;
+
+export const JoinDiv = styled.div``;

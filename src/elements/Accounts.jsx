@@ -1,57 +1,61 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { baseUrl } from "../data";
+import { getData, loginApi } from "../utils/api";
+import loadingIcon from "../img/loading.svg";
+import {
+  AccountsContainer,
+  AuthenticatedDiv,
+  LoginDiv,
+  JoinDiv,
+} from "../styledComponents";
 
-const Accounts = () => {
+const Accounts = (props) => {
   const [join, setJoin] = useState(false);
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const [login, setLogin] = useState(null);
+  const [myStore, setMyStore] = useState(null);
+  const [myMenu, setMyMenu] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const isAuth = localStorage.getItem("token");
 
   const onSubmit = () => {
     if (id == "" || pw == "") {
-      console.log("문제있어");
+      if (id == "") console.log("아이디를 입력해주세요.");
+      else if (pw == "") console.log("비밀번호를 입력해주세요.");
     } else {
-      const url = baseUrl + "accounts/login/";
-      const data = JSON.stringify({ username: id, password: pw });
-      axios
-        .post(url, data, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          console.log(res.data.token.access);
-          axios.defaults.headers.common["Authorization"] =
-            "Bearer " + res.data.token.access;
-          console.log("res.data.accessToken:" + res.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      props.handleLogin(id, pw);
     }
   };
   const testOnClick = async () => {
     let url = baseUrl + "accounts/show-mystore/";
 
     let res = await axios.get(url);
-    console.log(res.data);
+    setMyStore(res.data);
   };
 
+  useEffect(() => {
+    let url = baseUrl + "accounts/show-mystore/";
+    // let isAuth = axios.defaults.headers.common["Authorization"];
+    if (isAuth) getData(setMyStore, setLoading, url);
+  }, []);
+
   return (
-    <div>
-      {login}
-      {join ? (
-        <div>
-          <div>회원가입</div>
-          <form action="">
-            <input type="text" />
-            <input type="text" />
-            <input type="submit" />
-          </form>
-        </div>
+    <AccountsContainer>
+      {isAuth ? (
+        <AuthenticatedDiv>
+          <div>찜목록</div>
+          <div>
+            {myStore.map((store) => {
+              return <div key={store.id}></div>;
+            })}
+          </div>
+        </AuthenticatedDiv>
+      ) : join ? (
+        <JoinDiv> </JoinDiv>
       ) : (
-        <div>
+        <LoginDiv>
           <div>로그인</div>
           <form action="">
             <input
@@ -68,19 +72,69 @@ const Accounts = () => {
             />
             <div onClick={testOnClick}>테스트용 버튼이에요</div>
             <div onClick={onSubmit}>로그인</div>
-            {/* <button onClick={onSubmit}>로그인</button> */}
-            {/* <input type="submit"  /> */}
           </form>
-          <button
-            onClick={() => {
-              setJoin(true);
-            }}
-          >
-            회원가입
-          </button>
-        </div>
+        </LoginDiv>
       )}
-    </div>
+    </AccountsContainer>
+    // <div>
+    //   {isAuth ? <div></div> : <div></div>}
+    //   {loading ? (
+    //     <div className="loading">
+    //       <img src={loadingIcon} alt="" />
+    //     </div>
+    //   ) : (
+    //     <div>
+    //       {props.state.authenticated ? (
+    //         <div>
+    //           {myStore.map((store) => {
+    //             return <div key={store.id}>{store.store_name}</div>;
+    //           })}
+    //         </div>
+    //       ) : (
+    //         <div></div>
+    //       )}
+    //       {join ? (
+    //         <div>
+    //           <div>회원가입</div>
+    //           <form action="">
+    //             <input type="text" />
+    //             <input type="text" />
+    //             <input type="submit" />
+    //           </form>
+    //         </div>
+    //       ) : (
+    //         <div>
+    // <div>로그인</div>
+    // <form action="">
+    //   <input
+    //     type="text"
+    //     onChange={(e) => {
+    //       setId(e.target.value);
+    //     }}
+    //   />
+    //   <input
+    //     type="text"
+    //     onChange={(e) => {
+    //       setPw(e.target.value);
+    //     }}
+    //   />
+    //   <div onClick={testOnClick}>테스트용 버튼이에요</div>
+    //   <div onClick={onSubmit}>로그인</div>
+    //             {/* <button onClick={onSubmit}>로그인</button> */}
+    //             {/* <input type="submit"  /> */}
+    //           </form>
+    //           <button
+    //             onClick={() => {
+    //               setJoin(true);
+    //             }}
+    //           >
+    //             회원가입
+    //           </button>
+    //         </div>
+    //       )}
+    //     </div>
+    //   )}
+    // </div>
   );
 };
 
