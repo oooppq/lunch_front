@@ -46,7 +46,6 @@ const App = () => {
         token: token,
         result: true,
       });
-      // axios.defaults.headers.common["Authorization"] = "Bearer " + token.access;
       return true;
     } else {
       console.log("로그인 실패");

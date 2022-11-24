@@ -15,7 +15,7 @@ const Nav = () => {
   const navigate = useNavigate();
   const navOnClick = (e) => {
     let id = e.currentTarget.id;
-    console.log(id);
+
     if (id === "home") {
       navigate("/");
     } else if (id === "index") {

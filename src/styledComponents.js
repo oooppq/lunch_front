@@ -114,8 +114,9 @@ export const RecommTitle = styled.div`
   }
   background-color: white;
   position: absolute;
+
   top: -17px;
-  left: 102px;
+  left: 82px;
   font-size: 20px;
   font-weight: bolder;
   text-align: center;

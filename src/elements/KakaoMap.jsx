@@ -12,8 +12,9 @@ const KakaoMap = (props) => {
   });
   const [level, setLevel] = useState(5);
   const locs = document.querySelectorAll(".loc");
+
   for (let l of locs) {
-    l.addEventListener("click", () => {
+    l.addEventListener("click", (e) => {
       if (l.innerHTML == "정문") {
         setLoc({
           lat: 37.5523313,

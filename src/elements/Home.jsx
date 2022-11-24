@@ -41,7 +41,7 @@ const Home = () => {
     ]);
   }, []);
 
-  const gotoDetailOnClick = async (e) => {
+  const gotoDetailOnClick = (e) => {
     const id = e.currentTarget.id;
     navigate("index/" + id);
   };
@@ -75,7 +75,12 @@ const Home = () => {
 
               return (
                 <SaleLi key={s.id}>
-                  <img src={imag} alt="" />
+                  <img
+                    src={imag}
+                    alt=""
+                    id={restaurant.id}
+                    onClick={gotoDetailOnClick}
+                  />
                   <SaleBox>
                     <SaleLiLeft id={restaurant.id} onClick={gotoDetailOnClick}>
                       <div>

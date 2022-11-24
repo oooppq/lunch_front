@@ -57,12 +57,13 @@ const Index = (props) => {
         key={param.id}
         className={classnames("restElem", param.location_type)}
       >
-        <RestaurantImg src={img}>
-
-        </RestaurantImg>
+        <RestaurantImg
+          src={img}
+          id={param.id}
+          onClick={restOnClick}
+        ></RestaurantImg>
         <RestaurantElement>
           <RestaurantElemLeft id={param.id} onClick={restOnClick}>
-
             <RestaurantInfo>
               <div className="name">{param.store_name}</div>
               <span>#{param.location_type} </span>
@@ -70,7 +71,7 @@ const Index = (props) => {
             </RestaurantInfo>
           </RestaurantElemLeft>
           <RestaurantElemRight>
-            <span >찜하기</span>
+            <span>찜하기</span>
             <span
               onClick={() => {
                 props.setOptions((prev) => [...prev, param.store_name]);
@@ -108,8 +109,8 @@ const Index = (props) => {
       <LocationNavBar>
         {location_type.map((loc) => {
           return (
-            <LocationElement onClick={locOnClick} key={loc.id} className="loc">
-              <div>{loc.loc_type}</div>
+            <LocationElement onClick={locOnClick} key={loc.id}>
+              <div className="loc">{loc.loc_type}</div>
             </LocationElement>
           );
         })}
