@@ -9,6 +9,7 @@ import {
   LoginDiv,
   JoinDiv,
 } from "../styledComponents";
+import { useNavigate } from "react-router-dom";
 
 const Accounts = (props) => {
   const [join, setJoin] = useState(false);
@@ -19,8 +20,7 @@ const Accounts = (props) => {
   const [myMenu, setMyMenu] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isAuth, setIsAuth] = useState(localStorage.getItem("token") != null);
-  // const isAuth =
-
+  const navigate = useNavigate();
   const onSubmit = () => {
     if (id == "" || pw == "") {
       if (id == "") console.log("아이디를 입력해주세요.");
@@ -28,9 +28,9 @@ const Accounts = (props) => {
     } else {
       let res = props.handleLogin(id, pw);
       if (res) {
-        setIsAuth(true);
-        let url = baseUrl + "accounts/show-mystore/";
-        getData(setMyStore, setLoading, url);
+        // setIsAuth(true);
+
+        navigate("/");
       }
     }
   };
@@ -44,7 +44,12 @@ const Accounts = (props) => {
   useEffect(() => {
     let url = baseUrl + "accounts/show-mystore/";
     // let isAuth = axios.defaults.headers.common["Authorization"];
-    if (isAuth) getData(setMyStore, setLoading, url);
+    // console.log(axios.defaults.headers.common["Authorization"]);
+    if (isAuth) {
+      axios.defaults.headers.common["Authorization"] =
+        "bearer " + JSON.parse(localStorage.getItem("token")).access;
+      getData(setMyStore, setLoading, url);
+    }
   }, []);
 
   return (
@@ -59,8 +64,16 @@ const Accounts = (props) => {
             <div>찜목록</div>
             <div>
               {myStore.map((store) => {
-                return <div key={store.id}></div>;
+                return <div key={store.id}>{store.store_name}</div>;
               })}
+            </div>
+            <div
+              onClick={() => {
+                localStorage.removeItem("token");
+                setIsAuth(false);
+              }}
+            >
+              test logout
             </div>
           </AuthenticatedDiv>
         )

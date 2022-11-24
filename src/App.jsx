@@ -1,6 +1,11 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { Wrap } from "./styledComponents";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 import Header from "./elements/Header";
 import Home from "./elements/Home";
 import Index from "./elements/Index";
@@ -33,7 +38,7 @@ const App = () => {
 
   function handleLogin(id, pw) {
     let token = loginApi(id, pw);
-    console.log(token);
+
     if (token) {
       console.log("로그인 성공!");
       dispatch({
@@ -41,6 +46,7 @@ const App = () => {
         token: token,
         result: true,
       });
+      // axios.defaults.headers.common["Authorization"] = "Bearer " + token.access;
       return true;
     } else {
       console.log("로그인 실패");
@@ -49,14 +55,14 @@ const App = () => {
         token: null,
         result: false,
       });
-      return false;
+      return null;
     }
   }
   useEffect(() => {
     if (localStorage.getItem("token")) {
       let token = JSON.parse(localStorage.getItem("token"))["access"];
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-      console.log(axios.defaults.headers.common["Authorization"]);
+      // console.log(axios.defaults.headers.common["Authorization"]);
       dispatch({
         type: "SET_TOKEN",
         token: token,
