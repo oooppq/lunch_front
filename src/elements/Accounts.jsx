@@ -43,7 +43,7 @@ const Accounts = (props) => {
 
   return (
     <AccountsContainer>
-      {isAuth ? (
+      {isAuth || props.state.authenticated ? (
         <AuthenticatedDiv>
           <div>찜목록</div>
           <div>

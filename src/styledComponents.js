@@ -216,7 +216,7 @@ export const SaleLi = styled.li`
     border-radius: 5%;
   }
 `;
-export const SaleBox = styled.li`
+export const SaleBox = styled.div`
   display: grid;
   grid-template-columns: 1.5fr 1fr;
 `;
