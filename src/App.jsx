@@ -73,17 +73,6 @@ const App = () => {
   return (
     <Wrap>
       <Router>
-        {authenticated ? (
-          <div
-            onClick={() => {
-              localStorage.removeItem("token");
-            }}
-          >
-            yes
-          </div>
-        ) : (
-          <div>no</div>
-        )}
         <Header options={options}></Header>
         <Routes>
           <Route path="/" element={<Home />}></Route>
