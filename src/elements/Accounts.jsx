@@ -189,7 +189,8 @@ const Accounts = (props) => {
                       <div
                         className="saved-store-elem saved-elem"
                         key={store.id}
-                        onClick={() => {
+                        onClick={(e) => {
+                          if (e.target.className === "close") return;
                           navigate("/index/" + store.id);
                         }}
                       >
@@ -215,7 +216,8 @@ const Accounts = (props) => {
                       <div
                         className="saved-menu-elem saved-elem"
                         key={menu.id}
-                        onClick={() => {
+                        onClick={(e) => {
+                          if (e.target.className === "close") return;
                           navigate("/index/" + menu.restaurant);
                         }}
                       >
