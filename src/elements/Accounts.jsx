@@ -184,7 +184,7 @@ const Accounts = (props) => {
               <div className="saved-elements">
                 {myStore.map((store) => {
                   if (isStoreSave) {
-                    let imgSrc = "http://127.0.0.1:8000" + store.store_image;
+                    let imgSrc = baseUrl.slice(0, -1) + store.store_image;
                     return (
                       <div
                         className="saved-store-elem saved-elem"
@@ -211,7 +211,7 @@ const Accounts = (props) => {
                 })}
                 {myMenu.map((menu) => {
                   if (!isStoreSave) {
-                    let imgSrc = "http://127.0.0.1:8000" + menu.menu_image;
+                    let imgSrc = baseUrl.slice(0, -1) + menu.menu_image;
                     return (
                       <div
                         className="saved-menu-elem saved-elem"
