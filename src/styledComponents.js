@@ -43,6 +43,10 @@ export const Wrap = styled.div`
       width: 20px;
       margin: 0;
     }
+    div {
+      font-size: 15px;
+      // padding-top: 5px;
+    }
   }
 `;
 
@@ -568,7 +572,8 @@ export const DetailContainer = styled.div`
   }
   .copy-navi {
     display: flex;
-    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid grey;
   }
 
   .menus {

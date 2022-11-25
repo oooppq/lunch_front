@@ -79,7 +79,7 @@ const Detail = (props) => {
               <CopyToClipboard text={window.location.href}>
                 <button className="copy">
                   <img src={shareIcon} alt="" />
-                  복사하기
+                  <div>복사하기</div>
                 </button>
               </CopyToClipboard>
             </div>
