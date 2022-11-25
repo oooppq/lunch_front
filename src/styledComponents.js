@@ -299,9 +299,9 @@ export const RouletteContainer = styled.div`
   }
 
   button {
-    background: #febf00;
-    margin-top: 1rem;
-    padding: 0.8rem 1.8rem;
+    background: #FEBE8C;
+    margin-top: 1.5rem;
+    padding: 0.6rem 2.5rem;
     border: none;
     font-size: 1.5rem;
     font-weight: bold;
@@ -311,7 +311,7 @@ export const RouletteContainer = styled.div`
   }
 
   button:active {
-    background: #444;
+    background: #FF884B;
     color: #f9f9f9;
   }
 
