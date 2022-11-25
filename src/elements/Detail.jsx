@@ -18,6 +18,7 @@ const Detail = (props) => {
   const [rest, setRest] = useState(null);
   const [menu, setMenu] = useState(null);
   const [sale, setSale] = useState(null);
+  const [sale2, setSale2] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -25,13 +26,15 @@ const Detail = (props) => {
 
   const restUrl = baseUrl + "restaurants/all/" + id;
   const menuUrl = baseUrl + "restaurants/" + id + "/menu";
-  const saleUrl = baseUrl + "menu/allsale";
+  const saleUrl = baseUrl + "menu/sale";
+  const saleUrl2 = baseUrl + "menu/allsale";
 
   useEffect(() => {
-    getMultiData([setRest, setMenu, setSale], setLoading, [
+    getMultiData([setRest, setMenu, setSale, setSale2], setLoading, [
       restUrl,
       menuUrl,
       saleUrl,
+      saleUrl2,
     ]);
   }, []);
 
@@ -88,7 +91,7 @@ const Detail = (props) => {
           <div className="menuBox">
             <div className="menuTitle">MENU</div>
             {menu.map((m) => {
-              let s = getSaleById(sale, m.id);
+              let s = getSaleById(sale2, m.sale);
               if (s)
                 return (
                   <div key={m.id} className="menus">

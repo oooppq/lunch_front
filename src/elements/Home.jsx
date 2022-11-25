@@ -19,7 +19,7 @@ import left from "../img/left.png";
 import right from "../img/right.png";
 import noImage from "../img/no-image.png";
 
-import { getMenuById, getRestaurantById } from "../utils/findData";
+import { getMenuById, getRestaurantById, getSaleById } from "../utils/findData";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../data";
 
@@ -27,18 +27,21 @@ const Home = () => {
   const [rest, setRest] = useState(null);
   const [menu, setMenu] = useState(null);
   const [sale, setSale] = useState(null);
+  const [sale2, setSale2] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const restUrl = baseUrl + "restaurants/all";
   const menuUrl = baseUrl + "menu/all";
-  const saleUrl = baseUrl + "menu/allsale";
+  const saleUrl = baseUrl + "menu/sale";
+  const saleUrl2 = baseUrl + "menu/allsale";
 
   useEffect(() => {
-    getMultiData([setRest, setMenu, setSale], setLoading, [
+    getMultiData([setRest, setMenu, setSale, setSale2], setLoading, [
       restUrl,
       menuUrl,
       saleUrl,
+      saleUrl2,
     ]);
   }, []);
 
@@ -72,6 +75,7 @@ const Home = () => {
           <SaleUl>
             {sale.map((s) => {
               let m = getMenuById(menu, s.id);
+              let tmp = getSaleById(sale2, m.sale);
               let restaurant = getRestaurantById(rest, m.restaurant);
 
               return (
@@ -90,7 +94,7 @@ const Home = () => {
                         <span>{m.menu_name}</span>
                         <br />
                         <span className="price salePrice">{m.menu_price} </span>
-                        <span className="salePrice">{s.sale_price}</span>
+                        <span className="salePrice">{tmp.sale_price}</span>
                       </div>
                     </SaleLiLeft>
                     <SaleLiRight>
