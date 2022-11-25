@@ -59,6 +59,8 @@ const Detail = (props) => {
             <div className="locType">
               <div className="left">위치:</div>
               <div>{rest.location_type}</div>
+            </div>
+            <div className="copy-navi">
               <a
                 className="mapLink"
                 href={
@@ -74,12 +76,13 @@ const Detail = (props) => {
                 <img src={locImage} alt="" />
                 길찾기
               </a>
+              <CopyToClipboard text={window.location.href}>
+                <button className="copy">
+                  <img src={shareIcon} alt="" />
+                  복사하기
+                </button>
+              </CopyToClipboard>
             </div>
-            <CopyToClipboard text={window.location.href}>
-              <button className="copy">
-                <img src={shareIcon} alt="" />
-              </button>
-            </CopyToClipboard>
           </div>
 
           <div className="menuBox">

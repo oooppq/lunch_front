@@ -15,7 +15,9 @@ export const Wrap = styled.div`
   padding-bottom: 100px;
   margin: auto;
   // border-top: 15px solid #ffe8c6;
-
+  button {
+    text-decoration: none;
+  }
   @media only screen and (min-width: 400px) {
     width: 398px;
     margin: 0 auto;
@@ -29,14 +31,16 @@ export const Wrap = styled.div`
   }
 
   .copy {
+    display: flex;
     border: none;
     background-color: white;
     border-radius: 10px;
-    width: 40px;
+    width: 100px;
     height: 40px;
+
     img {
-      height: 30px;
-      width: 30px;
+      height: 20px;
+      width: 20px;
       margin: 0;
     }
   }
@@ -541,16 +545,18 @@ export const DetailContainer = styled.div`
     align-items: center;
     .type,
     .locType {
-      width: 150px;
+      font-size: 4vw;
+      width: 30%;
       text-align: left;
       display: flex;
       margin-bottom: 10px;
       .left {
         font-weight: bolder;
-        margin-right: 10px;
+        margin-right: auto;
       }
     }
   }
+
   .mapLink {
     margin-left: 10px;
     text-decoration: none;
@@ -560,6 +566,11 @@ export const DetailContainer = styled.div`
       margin: 0;
     }
   }
+  .copy-navi {
+    display: flex;
+    margin-top: 10px;
+  }
+
   .menus {
     // display: grid;
     // grid-template-columns: 1fr 1fr;
@@ -592,7 +603,7 @@ export const DetailContainer = styled.div`
     }
   }
   .menu {
-    font-size: 20px;
+    font-size: 4vw;
     font-weight: bold;
   }
 
@@ -733,6 +744,11 @@ export const AuthenticatedDiv = styled.div`
 
 export const LoginDiv = styled.div`
   witdh: 100%;
+  .wrong-info {
+    font-size: 4vw;
+    color: red;
+    margin-bottom: 5px;
+  }
   .login-title {
     font-size: 40px;
     font-weight: bolder;
@@ -745,6 +761,11 @@ export const LoginDiv = styled.div`
 
 export const JoinDiv = styled.div`
   witdh: 100%;
+  .wrong-info {
+    font-size: 4vw;
+    color: red;
+    margin-bottom: 5px;
+  }
   .register-title {
     font-size: 40px;
     font-weight: bolder;

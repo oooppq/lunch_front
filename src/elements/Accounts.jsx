@@ -269,6 +269,11 @@ const Accounts = (props) => {
             }}
             placeholder="비밀번호 확인"
           />
+          {registerFail ? (
+            <div className="wrong-info">정보를 올바르게 기입해주세요.</div>
+          ) : (
+            <></>
+          )}
           <button className="submit" onClick={registerOnClick}>
             회원가입
           </button>
@@ -294,6 +299,13 @@ const Accounts = (props) => {
             placeholder="비밀번호"
           />
           <br />
+          {loginFail ? (
+            <div class="wrong-info">
+              아이디 또는 비밀번호를 잘못 입력했습니다.{" "}
+            </div>
+          ) : (
+            <></>
+          )}
           <button className="submit" onClick={loginOnClick}>
             로그인
           </button>
