@@ -23,7 +23,7 @@ import { location_type, baseUrl } from "../data";
 import classnames from "classnames";
 import img from "../img/recom/2.png";
 // import Modal from "./Modal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { addMyStore, AddMyMenu } from "../utils/api";
 import noImage from "../img/no-image.png";
 
@@ -85,6 +85,7 @@ const Index = (props) => {
             </span>
             <span
               onClick={() => {
+                if (props.options.includes(param.store_name)) return;
                 props.setOptions((prev) => [...prev, param.store_name]);
               }}
             >

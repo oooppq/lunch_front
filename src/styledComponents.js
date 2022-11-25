@@ -53,13 +53,13 @@ export const Wrap = styled.div`
 /** Header components */
 export const HeaderDiv = styled.div`
   text-align: center;
-
+  width: 100%;
   height: 90px;
   padding: 10px 0;
   background-color: #ffe8c6;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-
+  border-bottom: 2px solid #b7423c;
   margin-bottom: 20px;
   img {
     height: 50px;
@@ -89,8 +89,11 @@ export const NavUl = styled.ul`
   justify-content: center;
   padding: 20px 0;
   margin: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  // border-top: 2px solid #b7423c;
 
-  box-shadow: 0 -3px 3px #dcdcdc;
+  //  box-shadow: 0 -3px 3px #dcdcdc;
   @media only screen and (min-width: 400px) {
     width: 400px;
     margin: 0 auto;
@@ -140,7 +143,7 @@ export const RecommTitle = styled.div`
   }
   background-color: white;
   position: absolute;
-
+  width: 200px;
   top: 0px;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -297,49 +300,91 @@ export const RouletteContainer = styled.div`
   .canvas-outer {
     width: 390px;
     margin: 0 auto;
-  }
-  canvas {
-    transition: 2s;
-  }
+    text-align: center;
+    canvas {
+      transition: 2s;
+    }
 
-  button {
-    background: #febe8c;
-    margin-top: 1.5rem;
-    padding: 0.6rem 2.5rem;
-    border: none;
-    font-size: 1.5rem;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: 0.2s;
-    cursor: pointer;
-  }
+    button {
+      background: #febe8c;
+      margin-top: 1.5rem;
+      padding: 0.6rem 2.5rem;
+      border: none;
+      font-size: 1.5rem;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: 0.2s;
+      cursor: pointer;
+    }
 
-  button:active {
-    background: #ff884b;
-    color: #f9f9f9;
-  }
+    button:active {
+      background: #ff884b;
+      color: #f9f9f9;
+    }
 
-  div {
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-  }
+    div {
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+    }
 
-  div::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: -15px;
-    margin-left: -25px;
-    width: 0;
-    height: 0;
-    border: 25px solid black;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    z-index: 9999;
+    div::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -15px;
+      margin-left: -25px;
+      width: 0;
+      height: 0;
+      border: 25px solid black;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      z-index: 9999;
+    }
+    // div.index {
+    //   width: 200px;
+    //   position: relative;
+    //   margin-bottom: 20px;
+    //   padding: 0 10px;
+    //   border-radius: 10px;
+    //   border: 1px solid black;
+    // }
+
+    ul {
+      width: 200px;
+      padding: 0;
+      position: absolute;
+      left: -1px;
+      top: 30px;
+      list-style: none;
+    }
+
+    li {
+      width: 200px;
+      padding: 5px 10px;
+      background-color: white;
+      border: 1px solid black;
+    }
+    img {
+      width: 15px;
+    }
+    img.empty {
+      padding-top: 70px;
+      padding-bottom: 50px;
+      width: 60%;
+      margin: 0 auto;
+    }
+    span {
+      font-weight: bolder;
+    }
+    .add {
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #ffb74d;
+    }
   }
 `;
 

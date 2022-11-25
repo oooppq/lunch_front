@@ -1,12 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { RouletteContainer } from "../styledComponents";
 import { product, colors } from "../data";
+import emptyIcon from "../img/empty.png";
+import { useNavigate } from "react-router-dom";
+import closeIcon from "../img/close.png";
 
 const Roulette = (props) => {
   const [ctx, setCtx] = useState();
   const canvasRef = useRef(null);
+  const navigate = useNavigate();
+  const [showIndex, setShowIndex] = useState(false);
 
   useEffect(() => {
+    if (!props.options.length) return;
     const canvas = canvasRef.current;
     canvas.width = document.querySelector(".canvas-outer").clientWidth * 0.9;
     canvas.height = document.querySelector(".canvas-outer").clientWidth * 0.9;
@@ -72,10 +78,60 @@ const Roulette = (props) => {
   return (
     <RouletteContainer>
       <div className="canvas-outer">
-        <canvas ref={canvasRef}></canvas>
-      </div>
+        {props.options.length ? (
+          <div>
+            {/* <div className="index">
+              <p
+                onClick={() => {
+                  setShowIndex(!showIndex);
+                }}
+              >
+                담은 식당 & MENU ▼
+              </p>
+              {showIndex ? (
+                <ul className="rmlist">
+                  {props.options.map((opt) => {
+                    return (
+                      <li>
+                        {opt}{" "}
+                        <img
+                          src={closeIcon}
+                          alt=""
+                          onClick={() => {
+                            props.setOptions(
+                              props.options.filter((option) => option != opt)
+                            );
+                          }}
+                        />
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <></>
+              )}
+            </div> */}
+            <canvas ref={canvasRef}></canvas>
 
-      <button onClick={rotate}>START</button>
+            <button onClick={rotate}>START</button>
+          </div>
+        ) : (
+          <p>
+            <img className="empty" src={emptyIcon} alt="" /> <br />
+            <span>돌림판이 비어있어요</span>
+            <br />
+            <br />
+            <span
+              className="add"
+              onClick={() => {
+                navigate("/index");
+              }}
+            >
+              + 돌림판 채우러가기
+            </span>
+          </p>
+        )}
+      </div>
     </RouletteContainer>
   );
 };

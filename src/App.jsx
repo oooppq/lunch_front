@@ -39,12 +39,27 @@ const App = () => {
           <Route path="/" element={<Home />}></Route>
           <Route
             path="/index"
-            element={<Index setOptions={setOptions} isAuth={isAuth} />}
+            element={
+              <Index
+                options={options}
+                setOptions={setOptions}
+                isAuth={isAuth}
+              />
+            }
           ></Route>
-          <Route path="/index/:id" element={<Detail isAuth={isAuth} />}></Route>
+          <Route
+            path="/index/:id"
+            element={
+              <Detail
+                isAuth={isAuth}
+                options={options}
+                setOptions={setOptions}
+              />
+            }
+          ></Route>
           <Route
             path="/roulette"
-            element={<Roulette options={options} />}
+            element={<Roulette options={options} setOptions={setOptions} />}
           ></Route>
           <Route
             path="/accounts"

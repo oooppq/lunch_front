@@ -300,7 +300,7 @@ const Accounts = (props) => {
           />
           <br />
           {loginFail ? (
-            <div class="wrong-info">
+            <div className="wrong-info">
               아이디 또는 비밀번호를 잘못 입력했습니다.{" "}
             </div>
           ) : (

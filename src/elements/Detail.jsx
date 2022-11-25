@@ -110,7 +110,14 @@ const Detail = (props) => {
                       >
                         찜하기
                       </div>
-                      <div>룰렛에 추가</div>
+                      <div
+                        onClick={() => {
+                          if (props.options.includes(m.menu_name)) return;
+                          props.setOptions((prev) => [...prev, m.menu_name]);
+                        }}
+                      >
+                        룰렛에 추가
+                      </div>
                     </div>
                   </div>
                 );
@@ -134,7 +141,14 @@ const Detail = (props) => {
                       >
                         찜하기
                       </div>
-                      <div>룰렛에 추가</div>
+                      <div
+                        onClick={() => {
+                          if (props.options.includes(m.menu_name)) return;
+                          props.setOptions((prev) => [...prev, m.menu_name]);
+                        }}
+                      >
+                        룰렛에 추가
+                      </div>
                     </div>
                   </div>
                 );
