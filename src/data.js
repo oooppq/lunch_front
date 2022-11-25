@@ -1,8 +1,8 @@
 // export const baseUrl = "http://127.0.0.1:8000/";
-export const baseUrl =
-  "https://port-0-todays-lunch-22nr12glavihytk.gksl2.cloudtype.app/";
 // export const baseUrl =
-//   "https://port-0-lunch-back-22nr12glavs5k87.gksl2.cloudtype.app/";
+//   "https://port-0-todays-lunch-22nr12glavihytk.gksl2.cloudtype.app/";
+export const baseUrl =
+  "https://port-0-lunch-back-22nr12glavs5k87.gksl2.cloudtype.app/";
 
 export const type = [
   {
