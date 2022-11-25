@@ -80,15 +80,6 @@ export const product = [
 ];
 
 export const colors = [
-<<<<<<< HEAD
-  "#dc0936",
-  "#e6471d",
-  "#f7a416",
-  "#efe61f ",
-  "#60b236",
-  "#209b6c",
-  "#169ed8",
-=======
   "#FF8787",
   "#F8C4B4",
   "#E5EBB2",
@@ -96,7 +87,6 @@ export const colors = [
   "#7FBCD2",
   "#A5F1E9",
   "#FFEEAF",
->>>>>>> 64b93c844d3b9d5d22194db869b9a4f4fb14d21f
   "#3f297e",
   "#87207b",
   "#be107f",

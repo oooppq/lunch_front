@@ -294,12 +294,16 @@ export const SaleLiRight = styled.div`
 /** roulette page components */
 export const RouletteContainer = styled.div`
   text-align: center;
+  .canvas-outer {
+    width: 390px;
+    margin: 0 auto;
+  }
   canvas {
     transition: 2s;
   }
 
   button {
-    background: #FEBE8C;
+    background: #febe8c;
     margin-top: 1.5rem;
     padding: 0.6rem 2.5rem;
     border: none;
@@ -311,7 +315,7 @@ export const RouletteContainer = styled.div`
   }
 
   button:active {
-    background: #FF884B;
+    background: #ff884b;
     color: #f9f9f9;
   }
 
