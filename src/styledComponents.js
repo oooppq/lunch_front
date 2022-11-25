@@ -549,7 +549,7 @@ export const DetailContainer = styled.div`
     align-items: center;
     .type,
     .locType {
-      font-size: 4vw;
+      font-size: 15px;
       width: 30%;
       text-align: left;
       display: flex;
@@ -608,7 +608,7 @@ export const DetailContainer = styled.div`
     }
   }
   .menu {
-    font-size: 4vw;
+    font-size: 15px;
     font-weight: bold;
   }
 
@@ -750,7 +750,7 @@ export const AuthenticatedDiv = styled.div`
 export const LoginDiv = styled.div`
   witdh: 100%;
   .wrong-info {
-    font-size: 4vw;
+    font-size: 12px;
     color: red;
     margin-bottom: 5px;
   }
@@ -767,7 +767,7 @@ export const LoginDiv = styled.div`
 export const JoinDiv = styled.div`
   witdh: 100%;
   .wrong-info {
-    font-size: 4vw;
+    font-size: 12px;
     color: red;
     margin-bottom: 5px;
   }
